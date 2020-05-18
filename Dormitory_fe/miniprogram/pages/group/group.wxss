@@ -1,1 +1,68 @@
 /* pages/group/group.wxss */
+/* 创建寝室样式 */
+.newContain{
+  font-family: SimSun;
+  display: flex;
+  justify-content:center;
+  /* color:#333; */
+  border:1px solid #818181;
+  border-radius: 10px;
+  width: 80%;
+  margin: 250rpx auto 100rpx auto;
+}
+.newMain{
+  /* margin-top: 370rpx; */
+  padding: 50rpx 0;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+/* 图片 */
+.newIcon{
+  margin: 0 auto;
+  width: 100rpx;
+  height: 100rpx;
+}
+text{
+  font-size: 16px;
+  margin-top: 20px;
+}
+.searchId{
+  width: 60%;
+  margin: 50rpx auto;
+
+}
+
+/* 有寝室情况样式 */
+/* .dorContain{
+  width: 100%;
+  height: 100%;
+} */
+.dorMain{
+  text-align: center;
+  width: 100%;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+.dorInfo{
+  /* width: 50%; */
+  margin: 0 auto;
+  padding: 50rpx 0 0 0;
+}
+/* 寝室图标 */
+.dorIcon{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 10rpx;
+  margin: 0 auto;
+}
+/* 寝室操作 */
+.dorOperate{
+  width: 95%;
+  margin: 0 auto;
+}
+i-cell{
+  padding: 20rpx
+}
+/* 引入底部导航栏的样式 */
+@import "/pages/bottom_menu/bottom_menu";

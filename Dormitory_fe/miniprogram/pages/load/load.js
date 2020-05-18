@@ -8,7 +8,13 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     isHide: false
   },
-
+  // 跳转页面函数
+  next: function(e) {
+    console.log("userInfo", getApp().globalData.userInfo)
+    wx.redirectTo({
+      url: '/pages/group/group'
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -20,13 +26,17 @@ Page({
             if (res.authSetting['scope.userInfo']) {
                 wx.getUserInfo({
                     success: function(res) {
+                        console.log("用户的userInfo:" , res.userInfo);
+                        getApp().globalData.userInfo = res.userInfo;
+                        that.next();
+                        //console.log(" getApp().globalData.userInfo:" ,  getApp().globalData.userInfo);
                         // 用户已经授权过,不需要显示授权页面,所以不需要改变 isHide 的值
                         // 根据自己的需求有其他操作再补充
                         // 我这里实现的是在用户授权成功后，调用微信的 wx.login 接口，从而获取code
                         wx.login({
                             success: res => {
                                 // 获取到用户的 code 之后：res.code
-                                console.log("用户的code:" + res.code);
+                                console.log("用户的code:" , res.code);
                                 // 可以传给后台，再经过解析获取用户的 openid
                                 // 或者可以直接使用微信的提供的接口直接获取 openid ，方法如下：
                                 // wx.request({
@@ -58,10 +68,13 @@ Page({
       var that = this;
       console.log("用户的信息如下：");
       console.log(e.detail.userInfo);
-      //授权成功后,隐藏授权页面
+      getApp().globalData.userInfo = e.detail.userInfo;
+      //授权成功后,隐藏授权
       that.setData({
           isHide: false
       });
+      // 跳转页面
+      that.next();
     } else {
       //用户点了拒绝授权
       wx.showModal({
