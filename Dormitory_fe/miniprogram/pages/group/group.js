@@ -5,7 +5,24 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    // firco: "#000000",
+    // secco: "#979797",
+    // 是否有寝室
+    dor:true,
+    // 当前底部导航栏显示
+    current: 'homepage',
+    barFixed: true,
+    // 搜索的寝室号
+    dorIdSearch: '',
+    dor: {
+      dorId: '1104',
+      dorName: '这是一个宿舍名'
+    }
+  },
+  handleChange ({ detail }) {
+    this.setData({
+        current: detail.key
+    });
   },
 
   /**
