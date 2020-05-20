@@ -5,9 +5,25 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    // 底部导航栏
+    current: 'mine',
+    barFixed: true,
   },
-
+  // 切换底部导航
+  handleChange ({ detail }) {
+    // var that = this;
+    console.log(this.data.current);
+    this.setData({
+        current: detail.key
+    });
+    //console.log(detail.key);
+    //console.log(this.data.current);
+    if(detail.key == 'homepage'){
+      wx.redirectTo({
+        url: '/pages/group/group'
+      });
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
