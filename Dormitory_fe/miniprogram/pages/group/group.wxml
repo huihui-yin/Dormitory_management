@@ -14,11 +14,11 @@
     <!-- 对寝室的操作 -->
     <view class="dorOperate">
     <!-- <i-icon type="activity" /> -->
-        <i-cell title="寝室资金" is-link></i-cell>
-        <i-cell title="寝室卫生安排" is-link></i-cell>
-        <i-cell title="寝室报修" is-link></i-cell>
-        <i-cell title="寝室投票" is-link></i-cell>
-        <i-cell title="寝室公关" is-link></i-cell>
+        <i-cell title="寝室资金" is-link url="/pages/finance/finance"></i-cell>
+        <i-cell title="寝室卫生安排" is-link url="/pages/clean/clean"></i-cell>
+        <i-cell title="寝室报修" is-link url="/pages/maintan/maintan"></i-cell>
+        <i-cell title="寝室投票" is-link url="/pages/poll/poll"></i-cell>
+        <i-cell title="寝室公告" is-link url="/pages/notice/notice"></i-cell>
     </view>
   </view>
 </view>
@@ -36,11 +36,11 @@
     <i-input value="{{ dorIdSearch }}" type="text" right title="查找寝室：" mode="wrapped" placeholder="输入寝室号" />
    </view>
 </view>
-<!-- 导入底部导航条 -->
+<!-- 底部导航条 -->
 <view>
   <i-tab-bar current="{{ current }}" bindchange="handleChange" fixed="{{barFixed}}">
       <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="寝室管理"></i-tab-bar-item>
-      <i-tab-bar-item key="group" icon="group" current-icon="group_fill" title="个人中心"></i-tab-bar-item>
+      <i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" title="个人中心"></i-tab-bar-item>
   </i-tab-bar>
 </view>
 <!-- <include src="/pages/bottom_menu/bottom_menu" /> -->

@@ -15,6 +15,12 @@ Page({
       url: '/pages/group/group'
     })
   },
+  // 跳转登陆页面
+  login: function(){
+    wx.redirectTo({
+      url: '/pages/login/login'
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -28,7 +34,8 @@ Page({
                     success: function(res) {
                         console.log("用户的userInfo:" , res.userInfo);
                         getApp().globalData.userInfo = res.userInfo;
-                        that.next();
+                        // that.next();
+                        that.login();
                         //console.log(" getApp().globalData.userInfo:" ,  getApp().globalData.userInfo);
                         // 用户已经授权过,不需要显示授权页面,所以不需要改变 isHide 的值
                         // 根据自己的需求有其他操作再补充
@@ -61,7 +68,7 @@ Page({
         }
     });
   },
-  // 已授权被调用
+  // 用户点击授权被调用
   bindGetUserInfo (e) {
     if (e.detail.userInfo) {
       //用户按了允许授权按钮
@@ -73,8 +80,10 @@ Page({
       that.setData({
           isHide: false
       });
-      // 跳转页面
-      that.next();
+      // 跳转注册页面
+      wx.redirectTo({
+        url: '/pages/sigin/sigin'
+      })
     } else {
       //用户点了拒绝授权
       wx.showModal({
