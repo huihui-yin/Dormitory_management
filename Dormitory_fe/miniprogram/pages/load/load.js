@@ -8,7 +8,7 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     isHide: false
   },
-  // 跳转页面函数
+  // 跳转主页面
   next: function(e) {
     console.log("userInfo", getApp().globalData.userInfo)
     wx.redirectTo({
@@ -20,6 +20,45 @@ Page({
     wx.redirectTo({
       url: '/pages/login/login'
     })
+  },
+  // 用户微信登录接口
+  wxlogin(){
+    var that = this;
+    wx.request({
+      url:getApp().globalData.api + '/user/codeLogin',
+      method:'POST',
+      header: {
+        'content-type':'multipart/form-data; boundary=XXX'
+      },
+      data:'\r\n--XXX' +
+        '\r\nContent-Disposition: form-data; name="code"' +
+        '\r\n' +
+        '\r\n' +getApp().globalData.code+
+        '\r\n--XXX' ,
+        success: (res) => {
+          let data = res.data;
+          //console.log('res.data', data);
+          // 未注册，跳转注册页面
+          if(data.code == '1008'){
+            wx.redirectTo({
+              url: '/pages/sigin/sigin'
+            })
+          }
+          // 已注册，直接登录即可
+          else if(data.code == '0000'){
+            //console.log('已注册hh');
+            // 修改全局数据
+            getApp().globalData.token = data.data.token;
+            getApp().globalData.tokenHead = data.data.tokenHead;
+            //console.log('token', getApp().globalData.token);
+            //console.log('tokenHead', getApp().globalData.tokenHead);
+            that.next();
+          }
+        },
+        fail:  (err) => {
+          console.log('接口失败', err);
+        },
+    });
   },
   /**
    * 生命周期函数--监听页面加载
@@ -34,28 +73,19 @@ Page({
                     success: function(res) {
                         console.log("用户的userInfo:" , res.userInfo);
                         getApp().globalData.userInfo = res.userInfo;
-                        // that.next();
-                        that.login();
                         //console.log(" getApp().globalData.userInfo:" ,  getApp().globalData.userInfo);
-                        // 用户已经授权过,不需要显示授权页面,所以不需要改变 isHide 的值
-                        // 根据自己的需求有其他操作再补充
-                        // 我这里实现的是在用户授权成功后，调用微信的 wx.login 接口，从而获取code
+                        // 调用接口获取登陆凭证code
                         wx.login({
-                            success: res => {
-                                // 获取到用户的 code 之后：res.code
-                                console.log("用户的code:" , res.code);
-                                // 可以传给后台，再经过解析获取用户的 openid
-                                // 或者可以直接使用微信的提供的接口直接获取 openid ，方法如下：
-                                // wx.request({
-                                //     // 自行补上自己的 APPID 和 SECRET
-                                //     url: 'https://api.weixin.qq.com/sns/jscode2session?appid=wx7eebcf243e7916cb&secret=5e89812be0c810fc21f2a9e4f8611721&js_code=' + res.code + '&grant_type=authorization_code',
-                                //     success: res => {
-                                //         // 获取到用户的 openid
-                                //         console.log("用户的openid:" + res.data.openid);
-                                //     }
-                                // });
-                            }
+                          success: res => {
+                              // 获取到用户的 code 之后：res.code
+                              console.log("用户的code:" , res.code);
+                              // 保存到全局变量
+                              getApp().globalData.code = res.code;
+                              // 判断用户是否注册，已注册直接跳转主页面，未注册跳转到注册页面
+                               that.wxlogin();
+                          }
                         });
+                        // that.next();
                     }
                 });
             } else {
@@ -75,15 +105,19 @@ Page({
       var that = this;
       console.log("用户的信息如下：");
       console.log(e.detail.userInfo);
+      // 修改全局数据
       getApp().globalData.userInfo = e.detail.userInfo;
-      //授权成功后,隐藏授权
-      that.setData({
-          isHide: false
+      // 调用接口获取登陆凭证
+      wx.login({
+        success: res => {
+            // 获取到用户的 code 之后：res.code
+            console.log("点击授权获取的用户的code:" , res.code);
+            getApp().globalData.code = res.code;
+            // 判断用户是否注册，已注册直接跳转主页面，未注册跳转到注册页面
+            console.log("全局code:" ,  getApp().globalData.code);
+            that.wxlogin();
+        }
       });
-      // 跳转注册页面
-      wx.redirectTo({
-        url: '/pages/sigin/sigin'
-      })
     } else {
       //用户点了拒绝授权
       wx.showModal({

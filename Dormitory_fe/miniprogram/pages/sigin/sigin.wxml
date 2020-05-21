@@ -13,7 +13,7 @@
   <!-- <view class='second'>
     <input id='pswack' placeholder='确认密码' placeholder-class="plas" class='inputs' type='password' bindinput='passwordInputAck' />
   </view> -->
-  <view id='btn' class='click' bindtap='regist'>注册</view>
+  <view id='btn' class='click' bindtap='regist'>注册并登录</view>
   <view class='cha' bindtap="login">
     <text class='no'>已有账号，点我登录</text>
   </view>

@@ -42,89 +42,51 @@ Page({
       })
     }
     else {
-      wx.redirectTo({
-        url: "/pages/group/group"
-      })
-      // wx.request({
-      //   url: getApp().globalData.server + '/API/Login/phone_login',
-      //   data: {
-      //     phone: that.data.username,
-      //     password: that.data.password,
-      //     user_id: getApp().globalData.userInfo_detail.user_id,
-      //     shop_id: getApp().globalData.settings.shop_id,
-      //     company_id: getApp().globalData.settings.company_id,
-      //   },
-      //   method: "POST",
-      //   header: {
-      //     "Content-Type": "application/x-www-form-urlencoded"
-      //   },
-      //   success: function (res) {
-      //     console.log(res.data)
-      //     if (res.data.error_no == 10012) {
-      //       wx.showModal({
-      //         title: '提示！',
-      //         showCancel: false,
-      //         content: '密码错误！',
-      //         success: function (res) { }
-      //       })
-      //     }
-      //     else if (res.data.error_no == 10008) {
-      //       wx.showModal({
-      //         title: '提示！',
-      //         showCancel: false,
-      //         content: '手机号不存在！',
-      //         success: function (res) { }
-      //       })
-      //     }
-      //     else if (res.data.error_no != 0) {
-      //       wx.showModal({
-      //         title: '哎呀～',
-      //         content: '出错了呢！' + res.data.data.error_msg,
-      //         success: function (res) {
-      //           if (res.confirm) {
-      //             console.log('用户点击确定')
-      //           } else if (res.cancel) {
-      //             console.log('用户点击取消')
-      //           }
-      //         }
-      //       })
-      //     }
-      //     else if (res.data.error_no == 0) {
-      //       getApp().globalData.userInfo_detail = res.data.data
-      //       //console.log(getApp().globalData.userInfo_detail)
-      //       wx.showModal({
-      //         title: '恭喜！',
-      //         showCancel: false,
-      //         content: '登录成功',
-      //         success: function (res) {
-      //           if (res.confirm) {
-      //             console.log('用户点击确定')
-      //           } else if (res.cancel) {
-      //             console.log('用户点击取消')
-      //           }
-      //         },
-      //         complete: function (res) {
-      //           wx.reLaunch({
-      //             url: '../load/load'
-      //           })
-      //         }
-      //       })
-      //     }
-      //   },
-      //   fail: function (res) {
-      //     wx.showModal({
-      //       title: '哎呀～',
-      //       content: '网络不在状态呢！',
-      //       success: function (res) {
-      //         if (res.confirm) {
-      //           console.log('用户点击确定')
-      //         } else if (res.cancel) {
-      //           console.log('用户点击取消')
-      //         }
-      //       }
-      //     })
-      //   }
-      // })
+      // 调用登录接口
+      wx.request({
+        url:getApp().globalData.api + '/user/login',
+        method:'POST',
+        header: {
+          'content-type':'multipart/form-data; boundary=XXX'
+        },
+        data:'\r\n--XXX' +
+          '\r\nContent-Disposition: form-data; name="username"' +
+          '\r\n' +
+          '\r\n' +that.data.username+
+          '\r\n--XXX' +
+          '\r\nContent-Disposition: form-data; name="password"' +
+          '\r\n' +
+          '\r\n' + that.data.password +
+          '\r\n--XXX' +
+          '\r\nContent-Disposition: form-data; name="code"' +
+          '\r\n' +
+          '\r\n' + getApp().globalData.code +
+          '\r\n--XXX' ,
+          success: (res) => {
+            let data = res.data;
+            console.log('res.data', data);
+            // 登录成功
+            if(data.code == '0000'){
+              //console.log('登录成功');
+              // 修改全局数据
+              getApp().globalData.token = data.data.token;
+              getApp().globalData.tokenHead = data.data.tokenHead;
+              wx.redirectTo({
+                url: "/pages/group/group"
+              })
+            }
+            else{
+              wx.showModal({
+                content: data.msg,
+                success: function (res) {
+                }
+              })
+            }
+          },
+          fail:  (err) => {
+            console.log(err);
+          },
+      });
     }
   },
   /**
