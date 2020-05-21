@@ -8,13 +8,15 @@ Page({
     // firco: "#000000",
     // secco: "#979797",
     // 是否有寝室
-    dor:true,
+    dorStatus: false,
     // 当前底部导航栏显示
     current: 'homepage',
     barFixed: true,
     // 搜索的寝室号
-    dorIdSearch: '',
-    current: 'homepage',
+    dorIdSearch: ' ',
+    // 搜索结果 
+    serchRes: false,
+    noRes: false,
     // 寝室信息
     dor: {
       dorId: '1104',
@@ -41,9 +43,34 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    // 此处获取宿舍信息如果为空说明未加入任何寝室，显示新增/搜索寝室；不为空显示寝室操作
+       wx.request({
+            url: getApp().globalData.api + '/room',
+            header: {
+              'Authorization': getApp().globalData.tokenHead + ' '+getApp().globalData.token
+            },
+            method: "GET",
+            success: function (res) {
+              let data = res.data;
+              // 有寝室将dorStatus改为true
+              if(data.data !== null){
+                console.log('hhh');
+                that.setData({
+                  dorStatus: true
+                })
+              }
+              console.log('dorStatus',that.data.dorStatus);
+            },
+            fail: function (err) {
+              console.log(err);
+            }
+          })
   },
-
+  // 搜索寝室号
+  serachId (e){
+    console.log('this.data.serachId',e.detail.detail.value);
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

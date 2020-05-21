@@ -19,17 +19,15 @@ Page({
   usernameInput: function(e) {
     this.data.username = e.detail.value
   },
-
   phonenumberInput: function(e) {
     this.data.phonenumber = e.detail.value
   },
-
   passwordInput: function(e) {
     this.data.password = e.detail.value
   },
   // 注册
   regist: function(e) {
-    var that = this
+    var that = this;
     var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
     if (that.data.username == '') {
       wx.showModal({
@@ -60,8 +58,102 @@ Page({
         success(res) {}
       })
     } else {
-      console.log("success");
-      this.login();
+      console.log("usernam: ",that.data.username);
+      console.log("phonenumber: ", that.data.phonenumber);
+      console.log("password: ", that.data.password);
+      console.log("头像地址: ", getApp().globalData.userInfo.avatarUrl);
+      // 调用注册接口
+      wx.request({
+        url:getApp().globalData.api + '/user/register',
+        method:'POST',
+        header: {
+          'content-type':'multipart/form-data; boundary=XXX'
+        },
+        data:'\r\n--XXX' +
+          '\r\nContent-Disposition: form-data; name="username"' +
+          '\r\n' +
+          '\r\n' +that.data.username+
+          '\r\n--XXX' +
+          '\r\nContent-Disposition: form-data; name="avatarUrl"' +
+          '\r\n' +
+          '\r\n' + getApp().globalData.userInfo.avatarUrl +
+          '\r\n--XXX' +
+          '\r\nContent-Disposition: form-data; name="tel"' +
+          '\r\n' +
+          '\r\n' + that.data.phonenumber +
+          '\r\n--XXX' +
+          '\r\nContent-Disposition: form-data; name="password"' +
+          '\r\n' +
+          '\r\n' + that.data.password +
+          '\r\n--XXX' +
+          '\r\nContent-Disposition: form-data; name="code"' +
+          '\r\n' +
+          '\r\n' + getApp().globalData.code +
+          '\r\n--XXX' ,
+          success: (res) => {
+            let data = res.data;
+            console.log('res.data', data);
+            // 注册成功
+            if(data.code == '0000'){
+              //console.log('注册成功');
+              wx.showModal({
+                content: '注册成功',
+                success: function (res) {
+                }
+              });
+              // 用户微信登录接口
+                var that = this;
+                wx.request({
+                  url:getApp().globalData.api + '/user/codeLogin',
+                  method:'POST',
+                  header: {
+                    'content-type':'multipart/form-data; boundary=XXX'
+                  },
+                  data:'\r\n--XXX' +
+                    '\r\nContent-Disposition: form-data; name="code"' +
+                    '\r\n' +
+                    '\r\n' +getApp().globalData.code+
+                    '\r\n--XXX' ,
+                    success: (res) => {
+                      let data = res.data;
+                      console.log('res.data', data);
+                      // 未注册，跳转注册页面
+                      if(data.code == '1008'){
+                        wx.redirectTo({
+                          url: '/pages/sigin/sigin'
+                        })
+                      }
+                      // 已注册，直接登录即可
+                      else if(data.code == '0000'){
+                        // 修改全局数据
+                        getApp().globalData.token = data.data.token;
+                        getApp().globalData.tokenHead = data.data.tokenHead;
+                        // 跳转主页
+                        setTimeout (() => {
+                          //要延时执行的代码
+                          wx.redirectTo({
+                            url: '/pages/group/group'
+                          })
+                        }, 1000) 
+                      }
+                    },
+                    fail:  (err) => {
+                      console.log('接口失败', err);
+                    },
+                });
+            }
+            else{
+              wx.showModal({
+                content: data.msg,
+                success: function (res) {
+                }
+              })
+            }
+          },
+          fail:  (err) => {
+            console.log(err);
+          },
+      });
     }
   },
   /**

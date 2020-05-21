@@ -1,7 +1,7 @@
 <!--这是创建寝室页面哦-->
 <!-- <text>pages/group/group.wxml</text> -->
   <!--加入了寝室-->
-<view wx:if="{{dor}}" class="dorContain">
+<view wx:if="{{dorStatus}}" class="dorContain">
   <view class="dorMain">
     <!-- 寝室信息 -->
     <view class="dorInfo">
@@ -33,7 +33,11 @@
    </view>
    <!--搜索寝室  -->
    <view class="searchId">
-    <i-input value="{{ dorIdSearch }}" type="text" right title="查找寝室：" mode="wrapped" placeholder="输入寝室号" />
+    <i-input bind:change="serachId" value="{{ dorIdSearch }}" type="text" right title="查找寝室：" mode="wrapped" placeholder="输入寝室号" maxlength="100"/>
+    <view>
+      <view wx:if="{{serchRes}}">111</view>
+      <view  wx:if="{{noRes}}">222</view>
+    </view>
    </view>
 </view>
 <!-- 底部导航条 -->

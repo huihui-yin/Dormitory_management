@@ -1,4 +1,4 @@
-<!--pages/mine/mine.wxml-->
+<!--个人中心页面-->
 <text>pages/mine/mine.wxml</text>
 <scroll-view class='scbg' scroll-y="true">
   <view class='personalInf'>
