@@ -5,3 +5,10 @@
   align-items: center;
   box-sizing: border-box;
 }
+/* 按钮样式 */
+.btn {
+  border-radius: 80rpx;
+  margin: 70rpx 50rpx;
+  font-size: 35rpx;
+  background-color: #7facd6 !important;
+}

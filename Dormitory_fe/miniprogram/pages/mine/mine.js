@@ -6,24 +6,31 @@ Page({
    */
   data: {
     // 底部导航栏
-    current: 'mine',
-    barFixed: true,
+    // current: 'mine',
+    // barFixed: true,
+    active: 'mine',
   },
   // 切换底部导航
-  handleChange ({ detail }) {
-    // var that = this;
-    console.log(this.data.current);
-    this.setData({
-        current: detail.key
-    });
-    //console.log(detail.key);
-    //console.log(this.data.current);
-    if(detail.key == 'homepage'){
+  onChange(event) {
+    this.setData({ active: event.detail });
+    console.log('active', this.data.active);
+    if(event.detail == 'home'){
       wx.redirectTo({
         url: '/pages/group/group'
       });
     }
   },
+  // handleChange ({ detail }) {
+  //   console.log(this.data.current);
+  //   this.setData({
+  //       current: detail.key
+  //   });
+  //   if(detail.key == 'homepage'){
+  //     wx.redirectTo({
+  //       url: '/pages/group/group'
+  //     });
+  //   }
+  // },
   /**
    * 生命周期函数--监听页面加载
    */
