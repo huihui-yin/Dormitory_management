@@ -20,7 +20,8 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		}
+		},
+		"nodeModules": true
 	},
 	"appid": "wx7eebcf243e7916cb",
 	"projectname": "Dormitory_fe",

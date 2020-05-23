@@ -31,13 +31,6 @@
   border: 2px solid #fff;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
 }
-/* 昵称 */
-.header text {
-  /* color: #fff; */
-  font-size: 14px;
-  background-color: #c0c0c0;
-  border-radius:40%;
-}
 .content {
   margin-left: 50rpx;
   margin-bottom: 90rpx;
@@ -49,7 +42,7 @@
   margin-top: 40rpx;
   text-align: center;
 }
-
+/* 按钮 */
 .bottom {
   border-radius: 80rpx;
   margin: 70rpx 50rpx;

@@ -7,7 +7,9 @@ App({
     userInfo: {},
     code: '',
     token: '',
-    tokenHead: ''
+    tokenHead: '',
+    // 是否有寝室
+    dorSta: false,
   },
   onLaunch: function () {
     

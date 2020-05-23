@@ -27,12 +27,20 @@
   <!-- 新建寝室 -->
   <view  class="newContain">
     <view class="newMain">
-      <image src="../../images/newDor.png" class="newIcon"></image>
+      <image src="../../images/newDor.png" class="newIcon" bindtap="newDor"></image>
       <text newWord>创建一个寝室</text>  
     </view>
    </view>
    <!--搜索寝室  -->
    <view class="searchId">
+     <!-- <view class="search-cell">
+      <view class="weui-cell__bd">
+        <input class="input-search" placeholder=""  value="{{inputVal}}"/>
+      </view>
+      <view class="weui-cell__ft">
+        <button class="btn-search" type="primary" >搜索</button>
+      </view>
+    </view> -->
     <i-input bind:change="serachId" value="{{ dorIdSearch }}" type="text" right title="查找寝室：" mode="wrapped" placeholder="输入寝室号" maxlength="100"/>
     <view>
       <view wx:if="{{serchRes}}">111</view>
@@ -42,9 +50,12 @@
 </view>
 <!-- 底部导航条 -->
 <view>
-  <i-tab-bar current="{{ current }}" bindchange="handleChange" fixed="{{barFixed}}">
+  <!-- <i-tab-bar current="{{ current }}" bindchange="handleChange" fixed="{{barFixed}}">
       <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="寝室管理"></i-tab-bar-item>
       <i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" title="个人中心"></i-tab-bar-item>
-  </i-tab-bar>
+  </i-tab-bar> -->
+  <van-tabbar active="{{ active }}" bind:change="onChange">
+    <van-tabbar-item name="home" icon="home-o">标签</van-tabbar-item>
+    <van-tabbar-item name="mine" icon="friends-o">标签</van-tabbar-item>
+  </van-tabbar>
 </view>
-<!-- <include src="/pages/bottom_menu/bottom_menu" /> -->

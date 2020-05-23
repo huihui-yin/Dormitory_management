@@ -10,8 +10,12 @@
 </scroll-view>
 <!-- 底部导航条 -->
 <view>
-  <i-tab-bar current="{{ current }}" bindchange="handleChange" fixed="{{barFixed}}">
+  <van-tabbar active="{{ active }}" bind:change="onChange">
+    <van-tabbar-item name="home" icon="home-o">标签</van-tabbar-item>
+    <van-tabbar-item name="mine" icon="friends-o">标签</van-tabbar-item>
+  </van-tabbar>
+  <!-- <i-tab-bar current="{{ current }}" bindchange="handleChange" fixed="{{barFixed}}">
       <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="寝室管理"></i-tab-bar-item>
       <i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" title="个人中心"></i-tab-bar-item>
-  </i-tab-bar>
+  </i-tab-bar> -->
 </view>
