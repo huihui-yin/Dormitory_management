@@ -1,7 +1,4 @@
 {
-  "usingComponents": {
-    "i-input": "../../dist/input/index",
-    "i-panel": "../../dist/panel/index"
-  },
+  "usingComponents": {},
   "navigationBarTitleText": "创建寝室"
 }

@@ -9,7 +9,7 @@
   </view>
   <view id="btn" class="click" bindtap="login">登 录</view>
 
-  <view class="cha" bindtap='signup'>
+  <!-- <view class="cha" bindtap='signup'>
     <text class="no">还没有账号？点我注册</text>
-  </view>
+  </view> -->
 </view>

@@ -21,46 +21,45 @@ Page({
         140000: '舍'
       },
       city_list: {
-        110100: '1栋',
-        110200: '2栋',
-        110300: '3栋',
-        110400: '4栋',
-        110500: '5栋',
-        110600: '6栋',
-        110700: '7栋',
-        110800: '8栋',
-        110900: '9栋',
-        120100: '1栋',
-        120200: '2栋',
-        120300: '3栋',
-        120400: '4栋',
-        120500: '5栋',
-        120600: '6栋',
-        120700: '7栋',
-        120800: '8栋',
-        120900: '9栋',
-        121000: '10栋',
-        130100: '1栋',
-        130200: '2栋',
-        130300: '3栋',
-        130400: '4栋',
-        130500: '5栋',
-        130600: '6栋',
-        130700: '7栋',
-        130800: '8栋',
-        140100: '1栋',
-        140200: '2栋',
-        140300: '3栋',
-        140400: '4栋',
-        140500: '5栋',
-        140600: '6栋',
-        140700: '7栋',
+        110100: '德馨1栋',
+        110200: '德馨2栋',
+        110300: '德馨3栋',
+        110400: '德馨4栋',
+        110500: '德馨5栋',
+        110600: '德馨6栋',
+        110700: '德馨7栋',
+        110800: '德馨8栋',
+        110900: '德馨9栋',
+        120100: '临江1栋',
+        120200: '临江2栋',
+        120300: '临江3栋',
+        120400: '临江4栋',
+        120500: '临江5栋',
+        120600: '临江6栋',
+        120700: '临江7栋',
+        120800: '临江8栋',
+        120900: '临江9栋',
+        121000: '临江10栋',
+        130100: '锦地1栋',
+        130200: '锦地2栋',
+        130300: '锦地3栋',
+        130400: '锦地4栋',
+        130500: '锦地5栋',
+        130600: '锦地6栋',
+        130700: '锦地7栋',
+        130800: '锦地8栋',
+        140100: '1舍',
+        140200: '2舍',
+        140300: '3舍',
+        140400: '4舍',
+        140500: '5舍',
+        140600: '6舍',
+        140700: '7舍',
       },
     }
   },
   // 输入的input数据
   nameInput(e){
-    console.log('输入寝室名哦~', e.detail);
     this.setData({
       roomName: e.detail
     })
@@ -86,9 +85,8 @@ Page({
   // 选择确认
   selectSumbit (e) {
     //console.log('e.detail.values', e.detail.values);
-    //console.log('乔丹选的是', e.detail.values[0].name+e.detail.values[1].name);
     this.setData({
-      roomLocation: e.detail.values[0].name+e.detail.values[1].name
+      roomLocation: e.detail.values[1].name
     })
     //console.log('roomLocation', this.data.roomLocation);
     this.selectDisply();
@@ -96,10 +94,10 @@ Page({
   // 确认创建
   newDorSubmit(){
     var that = this;
-    console.log('roomName',this.data.roomName);
-    console.log('roomSize',this.data.roomSize);
-    console.log('roomNumber',this.data.roomNumber);
-    console.log('roomLocation',this.data.roomLocation);
+    //console.log('roomName',this.data.roomName);
+    //console.log('roomSize',this.data.roomSize);
+    //console.log('roomNumber',this.data.roomNumber);
+    //console.log('roomLocation',this.data.roomLocation);
     if(this.data.roomName == ''){
       wx.showModal({
         title: '提示！',
@@ -144,7 +142,7 @@ Page({
         data:'\r\n--XXX' +
           '\r\nContent-Disposition: form-data; name="roomLocation"' +
           '\r\n' +
-          '\r\n' +that.data.roomLocation+that.data.roomNumber+
+          '\r\n' +that.data.roomLocation+ '-' +that.data.roomNumber+
           '\r\n--XXX' +
           '\r\nContent-Disposition: form-data; name="roomName"' +
           '\r\n' +
@@ -159,10 +157,10 @@ Page({
             console.log('res.data', data);
             // 登录成功
             if(data.code == '0000'){
-              console.log('创建寝室成功');
+              //console.log('创建寝室成功');
               wx.showModal({
                 showCancel: false,
-                content: '新建成功',
+                content: '创建成功',
                 showCancel: false,
                 success: function (res) { }
               })
