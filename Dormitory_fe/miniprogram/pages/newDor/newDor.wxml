@@ -18,7 +18,7 @@
        
     </view> -->
 
-    <!-- 组件 -->
+    <!-- 表单 -->
     <van-cell-group class="hh">
     <view class="inputs">
       <van-field required label="寝室名" placeholder="请输入寝室名"  bindinput="nameInput"/>

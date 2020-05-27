@@ -11,7 +11,8 @@
     "pages/maintan/maintan",
     "pages/poll/poll",
     "pages/notice/notice",
-    "pages/newDor/newDor"
+    "pages/newDor/newDor",
+    "pages/info/info"
   ],
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
@@ -20,7 +21,9 @@
     "van-icon": "@vant/weapp/icon/index",
     "van-area": "@vant/weapp/area/index",
     "van-field": "@vant/weapp/field/index",
-    "van-toast": "@vant/weapp/toast/index"
+    "van-toast": "@vant/weapp/toast/index",
+    "van-search": "@vant/weapp/search/index",
+    "van-card": "@vant/weapp/card/index"
   },
   "window": {
     "backgroundColor": "#F6F6F6",

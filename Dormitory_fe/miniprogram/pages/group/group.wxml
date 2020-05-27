@@ -7,20 +7,24 @@
     <view class="dorInfo">
       <image class="dorIcon" src="../../images/dor1.png"></image>
       <view>
-        {{dor.dorId}}
-        {{dor.dorName}}
+        <view>
+         {{dorId}}
+        {{dorName}}
+        </view>
+        <view class="text2">{{dorRoomLocation}}</view>
       </view>
     </view>
     <!-- 对寝室的操作 -->
     <view class="dorOperate">
-    <!-- <i-icon type="activity" /> -->
         <i-cell title="寝室资金" is-link url="/pages/finance/finance"></i-cell>
         <i-cell title="寝室卫生安排" is-link url="/pages/clean/clean"></i-cell>
         <i-cell title="寝室报修" is-link url="/pages/maintan/maintan"></i-cell>
         <i-cell title="寝室投票" is-link url="/pages/poll/poll"></i-cell>
         <i-cell title="寝室公告" is-link url="/pages/notice/notice"></i-cell>
+        <i-cell title="寝室信息详情" is-link url="/pages/info/info"></i-cell>
     </view>
   </view>
+  <view style="width:100%;height:50px"></view>
 </view>
   <!--没有加入寝室-->
 <view  wx:else>
@@ -33,27 +37,36 @@
    </view>
    <!--搜索寝室  -->
    <view class="searchId">
-     <!-- <view class="search-cell">
-      <view class="weui-cell__bd">
-        <input class="input-search" placeholder=""  value="{{inputVal}}"/>
+    <van-search 
+      value="{{ dorIdSearch }}" 
+      placeholder="请输入搜索关键词"
+      shape="round" 
+      bind:search="onSearch" 
+      bind:clear="onCancel" 
+    />
+    <view class="serchResCon" wx:if="{{serchRes}}">
+      <view class="ResOne">
+        <view><image src="../../images/dor1.png"></image></view>
+        <view>
+          <view class="text1">{{roomName}}</view>
+          <view class="text2">{{roomLocation}}</view>
+        </view>
+        <view class="join">
+          <van-button bindtap="joinDor" round size="small">点击加入</van-button>
+        </view>
       </view>
-      <view class="weui-cell__ft">
-        <button class="btn-search" type="primary" >搜索</button>
+    </view>
+    <!-- 无搜索数据 -->
+    <view class="noRes"  wx:if="{{noRes}}">
+      <view class="noResCon">
+        <image class="noResImg" src="../../images/noRes.png" alt="" ></image>
+        <view>无数据</view>
       </view>
-    </view> -->
-    <i-input bind:change="serachId" value="{{ dorIdSearch }}" type="text" right title="查找寝室：" mode="wrapped" placeholder="输入寝室号" maxlength="100"/>
-    <view>
-      <view wx:if="{{serchRes}}">111</view>
-      <view  wx:if="{{noRes}}">222</view>
     </view>
    </view>
 </view>
 <!-- 底部导航条 -->
-<view>
-  <!-- <i-tab-bar current="{{ current }}" bindchange="handleChange" fixed="{{barFixed}}">
-      <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="寝室管理"></i-tab-bar-item>
-      <i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" title="个人中心"></i-tab-bar-item>
-  </i-tab-bar> -->
+<view class="bottom">
   <van-tabbar active="{{ active }}" bind:change="onChange">
     <van-tabbar-item name="home" icon="home-o">标签</van-tabbar-item>
     <van-tabbar-item name="mine" icon="friends-o">标签</van-tabbar-item>
