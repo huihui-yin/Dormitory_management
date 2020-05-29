@@ -23,6 +23,7 @@ Page({
   },
   // 用户微信登录接口
   wxlogin(){
+    console.log('hhh');
     var that = this;
     wx.request({
       url:getApp().globalData.api + '/user/codeLogin',
@@ -34,18 +35,22 @@ Page({
         '\r\nContent-Disposition: form-data; name="code"' +
         '\r\n' +
         '\r\n' +getApp().globalData.code+
+        '\r\n--XXX' +
+        '\r\nContent-Disposition: form-data; name="avatarUrl"' +
+        '\r\n' +
+        '\r\n' +getApp().globalData.userInfo.avatarUrl+
         '\r\n--XXX' ,
         success: (res) => {
           let data = res.data;
-          //console.log('res.data', data);
+          console.log('res.data', data);
           // 未注册，跳转注册页面
-          if(data.code == '1008'){
-            wx.redirectTo({
-              url: '/pages/sigin/sigin'
-            })
-          }
+          // if(data.code == '1008'){
+          //   wx.redirectTo({
+          //     url: '/pages/sigin/sigin'
+          //   })
+          // }
           // 已注册，直接登录即可
-          else if(data.code == '0000'){
+          // else if(data.code == '0000'){
             //console.log('已注册hh');
             // 修改全局数据
             getApp().globalData.token = data.data.token;
@@ -53,7 +58,7 @@ Page({
             //console.log('token', getApp().globalData.token);
             //console.log('tokenHead', getApp().globalData.tokenHead);
             that.next();
-          }
+          // }
         },
         fail:  (err) => {
           console.log('接口失败', err);
@@ -73,7 +78,7 @@ Page({
                     success: function(res) {
                         console.log("用户的userInfo:" , res.userInfo);
                         getApp().globalData.userInfo = res.userInfo;
-                        //console.log(" getApp().globalData.userInfo:" ,  getApp().globalData.userInfo);
+                        console.log("用户的头像:" , getApp().globalData.userInfo.avatarUrl);
                         // 调用接口获取登陆凭证code
                         wx.login({
                           success: res => {
@@ -81,7 +86,7 @@ Page({
                               console.log("用户的code:" , res.code);
                               // 保存到全局变量
                               getApp().globalData.code = res.code;
-                              // 判断用户是否注册，已注册直接跳转主页面，未注册跳转到注册页面
+                              // 登录进入系统
                                that.wxlogin();
                           }
                         });
