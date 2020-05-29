@@ -5,14 +5,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    room: {},
+    users: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      room: getApp().globalData.dormitoryInfo,
+      users: getApp().globalData.dormitoryChum
+    })
+    console.log('room',this.data.room);
+    console.log('users',this.data.users);
   },
 
   /**

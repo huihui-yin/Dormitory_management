@@ -1,1 +1,37 @@
-/* pages/info/info.wxss */
+/* 寝室昵称 ，寝室id ，地址  */
+/* .infoContain{
+  background-color: #818181;
+} */
+.topInfo{
+  /* height: 50rpx; */
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding: 20rpx;
+}
+.dorImg image{
+  height: 100rpx;
+  width: 100rpx;
+  /* margin: 20rpx;   */
+}
+.dorWord{
+  padding: 0 10px;
+}
+.dorWord .text2{
+  font-size: 12px;
+  color: #818181;
+}
+/* 寝室成员 */
+.userInfoCon{
+  /* height: 300rpx; */
+  width: 100%;
+}
+.userInfoMain{
+  display: flex;
+  justify-content: flex-start;
+}
+.userInfoMain image{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}

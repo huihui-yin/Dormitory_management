@@ -1,2 +1,26 @@
-<!--pages/info/info.wxml-->
-<text>pages/info/info.wxml</text>
+<!--寝室信息页面-->
+<!-- <text>pages/info/info.wxml</text> -->
+<view class = 'infoContain'>
+  <!-- 寝室昵称 ，寝室id ，地址 -->
+  <view class = 'topInfo'>
+    <view class = 'dorImg'>
+      <image src="../../images/dor1.png"></image>
+    </view>
+    <view class = 'dorWord'>
+      <view class="text1">{{room.roomName}}</view>
+      <view class="text2">{{room.roomLocation}}</view>
+    </view>
+  </view>
+  <!-- 寝室人员区域 -->
+  <view class="userInfoCon">
+  <view class="uersTitle">寝室成员:{{}}</view>
+    <view class="userInfoMain">
+      <view wx:for="{{users}}">
+        <image wx:if='item.avatarUrl' src='{{item.avatarUrl}}'>
+        </image> 
+        <view>{{item.username}}</view> 
+        <!--<image src="https://wx.qlogo.cn/mmopen/vi_32/7pBHwRUc13en9jPWKx9DPWrmNLVUgsztDGusYzGicg9Xqgu2qnyDAwancEICg6aiczVlkBBL7xL7odLfQaCZNt5A/132"></image> -->
+      </view>
+    </view>
+  </view>
+</view>

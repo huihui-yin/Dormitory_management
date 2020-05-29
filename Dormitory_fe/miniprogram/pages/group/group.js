@@ -53,10 +53,10 @@ Page({
             method: "GET",
             success: function (res) {
               let data = res.data;
-              console.log('请求宿舍时返回的data',data);
+              //console.log('请求宿舍时返回的data',data);
               // 有寝室将dorStatus改为true并把寝室数据存入全局数据
               if(data.data !== null){
-                console.log('hhh');
+                //console.log('hhh');
                 that.setData({
                   dorStatus: true,
                   dorId: data.data.room.id,
@@ -68,7 +68,7 @@ Page({
                 console.log('getApp().globalData.dormitoryInfo',getApp().globalData.dormitoryInfo);
                 console.log('getApp().globalData.dormitoryChum',getApp().globalData.dormitoryChum);
               }
-              console.log('dorStatus',that.data.dorStatus);
+              //console.log('dorStatus',that.data.dorStatus);
             },
             fail: function (err) {
               console.log(err);

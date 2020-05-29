@@ -63,14 +63,6 @@ text{
   height: 40px;
   margin-left: 30rpx;
 }
-.text1{
-  font-size: 30rpx;
-}
-.text2{
-  font-size: 25rpx;
-  color: #818181;
-  margin-top:5px
-}
 /* 有寝室的样式 */
 .dorMain{
   text-align: center;
@@ -89,6 +81,15 @@ text{
   height: 80rpx;
   border-radius: 10rpx;
   margin: 0 auto;
+}
+/* 寝室名 */
+.text1{
+  font-size: 30rpx;
+}
+.text2{
+  font-size: 25rpx;
+  color: #818181;
+  margin-top:5px
 }
 /* 寝室操作 */
 .dorOperate{
