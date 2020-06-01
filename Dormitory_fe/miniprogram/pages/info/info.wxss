@@ -49,6 +49,7 @@
 }
 .username{
   font-size: 12px;
+  text-align: center;
 }
 /* 寝室信息详情 */
 .infoDetCon{
