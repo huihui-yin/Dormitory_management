@@ -1,0 +1,34 @@
+<!--pages/addmaintan/addmaintan.js.wxml-->
+<view class="maintanCenter">
+  <!--图标-->
+  <view class="maintanIcon">
+    <van-icon name="phone-o" size="120px" class="icon"/>
+  </view>
+  <view class="maintanRoom">
+    <van-field
+      value="{{ roomId }}"
+      label="寝室ID"
+       required
+      placeholder="请输入寝室ID"
+      border="{{ false }}"
+      bindinput="isRoomid"
+      tyep='number'
+    />
+  </view>
+  <view class="maintanDes">
+    <van-field required label="报修描述" placeholder="请输入描述"  bindinput="maindes"/>
+  </view>
+  <view class="maintanItem">
+    <van-field value="{{ item }}" required label="报修项目" placeholder="请选择项目" bindtap="selectDisply" />
+  </view>
+  <van-button type="primary" size="large" bind:click="submit">提交报修</van-button>
+</view>
+<!--下拉选择器-->
+<van-area 
+    wx:if="{{hiddenSelect}}" 
+    bind:confirm="selectSumbit" 
+    bind:cancel="selectDisply"
+    class="newDorSelect" 
+    area-list="{{ areaList }}" 
+    value="11000" 
+    columns-num="{{ 1 }}"/>

@@ -5,14 +5,102 @@ Page({
    * 页面的初始数据
    */
   data: {
+    allmaintan:[],
+    deleteId:""
+  },
+  //新增报修信息
+  addmaintan(){
+    wx.redirectTo({
+      url: '/pages/addmaintan/addmaintan'
+    })
+  },
+  //删除保修信息
+  deletemaintan(e){
+    var that=this;
+    this.setData({
+      // show: true
+      deleteId:e.currentTarget.dataset['index']
+    });
+    wx.showModal({
+      title: '提示',
+        content: '是否删除该条保修信息！',
+        success (res) {
+          if (res.confirm) {
+            // 删除报修信息
+            wx.request({
+              url:getApp().globalData.api + '/maintan',
+              method:'DELETE',
+              header: {
+                'Authorization': getApp().globalData.tokenHead + ' '+getApp().globalData.token,
+                'content-type':'multipart/form-data; boundary=XXX'
+              },
+              data:'\r\n--XXX' +
+                '\r\nContent-Disposition: form-data; name="id"' +
+                '\r\n' +
+                '\r\n' +that.data.deleteId+
+                '\r\n--XXX' ,
+                success: (res) => {
+                  let data = res.data;
+                  //console.log('res.data', data);
+                  // 修改成功
+                  if(data.code == '0000'){
+                    wx.showToast({
+                      title: '移除成功',
+                      icon: 'success',
+                      duration: 1000
+                    })
+                    // 重新查询寝室刷新寝室成员
+                    that.getallmaintan();
+                  }
+                  else{
+                      wx.showModal({
+                        content: data.msg,
+                        showCancel: false,
+                        success: function (res) {
+                        }
+                      })
+                  }
+                },
+                fail:  (err) => {
+                },
+          });
+          } else if (res.cancel) {
+            //console.log('用户点击取消')
+          }
+        }
+    })
+    //console.log(that.data.deleteId)
 
+  },
+  //获取所有的报修信息
+  getallmaintan(){
+    var that=this;
+    wx.request({
+      url: getApp().globalData.api + '/maintan',
+      header: {
+        'Authorization': getApp().globalData.tokenHead + ' '+getApp().globalData.token
+      },
+      method:'GET',
+      success: function (res) {
+        let data = res.data;
+        if(data.data !== null){
+          //console.log('hhh');
+          that.setData({
+            allmaintan:data.data.records
+          })
+        }
+      },
+      fail: function (err) {
+        console.log(err);
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getallmaintan();
   },
 
   /**
