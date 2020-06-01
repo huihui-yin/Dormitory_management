@@ -216,6 +216,7 @@ Page({
       console.log('hh');
       this.DorInfo();
    }
+   getApp().globalData.page = 0;
   },
 
   /**
