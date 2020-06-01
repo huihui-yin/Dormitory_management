@@ -16,14 +16,14 @@
   <view class="uersTitle">寝室成员:{{index}}</view>
     <view class="userInfoMain">
       <view class="oneUser" wx:for="{{users}}">
-        <image wx:if='item.avatarUrl' src='{{item.avatarUrl}}'>
-        </image> 
+        <image bindtap="userDetail" data-index='{{item}}'  src='{{item.avatarUrl}}'></image> 
         <view class="username">{{item.username}}</view> 
       </view>
     </view>
   </view>
   <!-- 寝室信息详情 -->
-  <view class="infoDetCon">
+  <!-- 室长看到的 -->
+  <view wx:if='{{roomLeader}}' class="infoDetCon">
     <!-- <view class="dorName">
       <text>寝室id:</text>
       <text>{{room.id}}</text>
@@ -32,7 +32,7 @@
       <van-field
         value="{{room.id}}"
         label="寝室id:"
-        left-icon="contact"
+        left-icon="award-o"
         readonly
         border="{{ false }}"
         input-align="right"
@@ -40,53 +40,89 @@
     </van-cell-group>
      <van-cell-group>
       <van-field
-        value="{room.roomName}}"
+        value="{{room.roomName}}"
         label="寝室名:"
-        left-icon="contact"
-        readonly
+        left-icon="wap-home-o"
         border="{{ false }}"
         input-align="right"
+        bindinput="nameInput"
         />
     </van-cell-group>
-    <!-- <view class="dorName">
-      <text>寝室名:</text>
-      <text>{{room.roomName}}</text>
-    </view> -->
      <van-cell-group>
       <van-field
         value="{{room.roomLocation}}"
         label="寝室位置:"
-        left-icon="contact"
+        left-icon="location-o"
+        border="{{ false }}"
+        input-align="right"
+        bindinput="localInput"
+        />
+    </van-cell-group>
+    <van-cell-group>
+      <van-field
+        value="{{room.roomSize}}"
+        label="寝室容量(人):"
+        left-icon="friends-o"
+        border="{{ false }}"
+        input-align="right"
+        bindinput="sizeInput"
+        />
+    </van-cell-group>
+  </view>
+  <!-- 成员看到的 -->
+  <view wx:else class="infoDetCon">
+    <van-cell-group>
+      <van-field
+        value="{{room.id}}"
+        label="寝室id:"
+        left-icon="award-o"
         readonly
         border="{{ false }}"
         input-align="right"
         />
     </van-cell-group>
-    <!-- <view class="dorName">
-      <text>寝室位置:</text>
-      <text>{{room.roomLocation}}</text>
-    </view> -->
+    <van-cell-group>
+      <van-field
+        value="{{room.roomName}}"
+        label="寝室名:"
+        left-icon="wap-home-o"
+        readonly
+        border="{{ false }}"
+        input-align="right"
+        />
+    </van-cell-group>
+    <van-cell-group>
+      <van-field
+        value="{{room.roomLocation}}"
+        label="寝室位置:"
+        left-icon="location-o"
+        readonly
+        border="{{ false }}"
+        input-align="right"
+        />
+    </van-cell-group>
     <van-cell-group>
       <van-field
         value="{{room.roomSize}}人"
-        label="寝室大小:"
-        left-icon="contact"
+        label="寝室容量:"
+        left-icon="friends-o"
         readonly
         border="{{ false }}"
         input-align="right"
         />
     </van-cell-group>
-    <!-- <view class="dorName">
-      <text>寝室大小:</text>
-      <text>{{room.roomSize}}人</text>
-    </view> -->
   </view>
   <!-- 确认修改 -->
-   <view class="exitDor">
+  <view wx:if="{{roomLeader}}" class="exitDor" style='color: #333' bindtap="modSure">
     <text class="exitWord">确认修改</text>
   </view>
   <!-- 退出寝室 -->
-  <view class="exitDor">
+  <view class="exitDor" bindtap="exitDor">
     <text class="exitWord">退出寝室</text>
   </view>
 </view>
+
+
+<!--点击寝室成员头像弹窗  -->
+<!-- <van-overlay show="{{ show }}" bind:click="onClickHide" /> -->
+<i-action-sheet visible="{{ visible1 }}" actions="{{ actions1 }}" show-cancel bind:cancel="handleCancel1" bind:click="handleClickItem1" />

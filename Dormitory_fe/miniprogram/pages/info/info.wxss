@@ -76,4 +76,13 @@
   text-align: center;
   color: red;
   padding: 10px 0;
+  margin: 5px 0;
+}
+/* 选择寝室位置 */
+.newDorSelect{
+  /* display: none; */
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1;
 }

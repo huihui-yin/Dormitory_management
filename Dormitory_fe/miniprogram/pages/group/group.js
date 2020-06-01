@@ -40,10 +40,12 @@ Page({
   },
   // 获取寝室信息
   DorInfo(){
+    console.log('获取寝室信息');
     var that = this;
-    // that.setData({
-    //   dorStatus: false
-    // })
+    that.setData({
+      dorStatus: false
+    })
+    //console.log('dorStatus1',that.data.dorStatus);
     // 此处获取宿舍信息如果为空说明未加入任何寝室，显示新增/搜索寝室；不为空显示寝室操作
        wx.request({
             url: getApp().globalData.api + '/room',
@@ -56,7 +58,7 @@ Page({
               //console.log('请求宿舍时返回的data',data);
               // 有寝室将dorStatus改为true并把寝室数据存入全局数据
               if(data.data !== null){
-                //console.log('hhh');
+                console.log('有寝室！');
                 that.setData({
                   dorStatus: true,
                   dorId: data.data.room.id,
@@ -68,12 +70,13 @@ Page({
                 console.log('getApp().globalData.dormitoryInfo',getApp().globalData.dormitoryInfo);
                 console.log('getApp().globalData.dormitoryChum',getApp().globalData.dormitoryChum);
               }
-              //console.log('dorStatus',that.data.dorStatus);
+             // console.log('dorStatus2',that.data.dorStatus);
             },
             fail: function (err) {
               console.log(err);
             }
-          })
+       })
+      //console.log('dorStatus3',that.data.dorStatus);
   },
   // 搜索寝室号
   // 用户点击键盘搜索按钮或回车
@@ -169,11 +172,10 @@ Page({
           // 登录成功
           if(data.code == '0000'){
             console.log('加入寝室成功');
-            wx.showModal({
-              showCancel: false,
-              content: '加入成功',
-              showCancel: false,
-              success: function (res) { }
+            wx.showToast({
+              title: '加入成功',
+              icon: 'success',
+              duration: 1000
             })
             that.data.dorStatus = true;
             that.DorInfo();
@@ -210,7 +212,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.DorInfo();
+    if(getApp().globalData.page == '1'){
+      console.log('hh');
+      this.DorInfo();
+   }
   },
 
   /**

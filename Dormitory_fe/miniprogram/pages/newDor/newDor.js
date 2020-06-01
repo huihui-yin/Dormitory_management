@@ -158,11 +158,10 @@ Page({
             // 登录成功
             if(data.code == '0000'){
               //console.log('创建寝室成功');
-              wx.showModal({
-                showCancel: false,
-                content: '创建成功',
-                showCancel: false,
-                success: function (res) { }
+              wx.showToast({
+                title: '创建寝室成功',
+                icon: 'success',
+                duration: 1000
               })
               setTimeout(() => {
                 wx.navigateBack({

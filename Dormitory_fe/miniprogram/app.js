@@ -17,7 +17,9 @@ App({
     // 用户寝室所有室友信息
     dormitoryChum: {},
     // 在寝室的角色
-    roomRole: ''
+    roomRole: '',
+    // 跳转页面（寝室详情页面/新增寝室页面：1）
+    page: 0
   },
   onLaunch: function () {
     
