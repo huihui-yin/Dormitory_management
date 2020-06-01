@@ -15,7 +15,9 @@ App({
     // 用户的寝室信息
     dormitoryInfo: {},
     // 用户寝室所有室友信息
-    dormitoryChum: {}
+    dormitoryChum: {},
+    // 在寝室的角色
+    roomRole: ''
   },
   onLaunch: function () {
     

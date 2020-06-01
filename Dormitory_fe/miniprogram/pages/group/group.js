@@ -137,7 +137,9 @@ Page({
             success: function (res) {
               let data = res.data;
               getApp().globalData.id = data.data.id;
+              getApp().globalData.roomRole = data.data.roles[0].name;
               console.log('全局id', getApp().globalData.id);
+              console.log('用户角色：', getApp().globalData.roomRole);
             },
             fail: function (err) {
               console.log(err);
