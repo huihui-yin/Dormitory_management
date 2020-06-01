@@ -1,2 +1,12 @@
 <!--pages/maintan/maintan.wxml-->
-<text>pages/maintan/maintan.wxml</text>
+<view class="add">
+  <van-button icon="add-o" type="primary" class="addbtn" bind:click="addmaintan">报修</van-button>
+</view>
+<view class="allmaintan">
+  <van-swipe-cell right-width="{{ 65 }}" wx:for="{{allmaintan}}" wx:ket="{{item.id}}">
+    <van-cell-group>
+      <van-cell title="{{item.item}}" value="{{item.description}}" />
+    </van-cell-group>
+    <view slot="right" class="delete" bindtap="deletemaintan" data-index='{{item.id}}'>删除</view>
+  </van-swipe-cell>
+</view>

@@ -1,1 +1,15 @@
 /* pages/maintan/maintan.wxss */
+.delete{
+  display: inline-block;
+  width: 65px;
+  height: 44px;
+  font-size: 15px;
+  line-height: 44px;
+  color: #fff;
+  text-align: center;
+  background-color: #f44;
+}
+.add{
+  display: flex;
+  justify-content: flex-end;
+}
