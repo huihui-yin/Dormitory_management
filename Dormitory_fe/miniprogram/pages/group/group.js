@@ -22,12 +22,18 @@ Page({
     roomLocation: '',
     roomName: ''
   },
+  // 跳转到寝室详情页面
+  next () {
+    wx.navigateTo({
+      url: '/pages/info/info'
+    })
+  },
   // 切换底部导航
   onChange(event) {
     this.setData({ active: event.detail });
     console.log('active', this.data.active);
     if(event.detail == 'mine'){
-          wx.redirectTo({
+          wx.navigateTo({
             url: '/pages/mine/mine'
           });
     }
