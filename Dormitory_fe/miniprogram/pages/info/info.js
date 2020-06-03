@@ -140,7 +140,7 @@ Page({
                 // 修改成功
                 if(data.code == '0000'){
                   wx.showToast({
-                    title: '退出寝室成功',
+                    title: '成功退出寝室',
                     icon: 'success',
                     duration: 1000
                   })

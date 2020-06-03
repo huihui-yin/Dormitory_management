@@ -5,7 +5,7 @@
   <view class="dorMain">
     <!-- 寝室信息 -->
     <view class="dorInfo">
-      <image class="dorIcon" src="../../images/dor1.png"></image>
+      <image bindtap="next" class="dorIcon" src="../../images/dor1.png"></image>
       <view>
         <view>
          {{dorId}}

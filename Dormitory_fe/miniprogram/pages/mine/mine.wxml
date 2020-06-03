@@ -1,21 +1,67 @@
 <!--个人中心页面-->
-<text>pages/mine/mine.wxml</text>
 <scroll-view class='scbg' scroll-y="true">
   <view class='personalInf'>
     <view class='deco'>
       <open-data class='ava' type="userAvatarUrl"></open-data>
     </view>
-    <open-data class='nn' type="userNickName"></open-data>
+    <!-- <open-data class='nn' type="userNickName"></open-data> -->
   </view>
 </scroll-view>
+<!-- 用户信息 -->
+<view class="userInfo">
+  <!-- <view class="infoTitle">基本资料</view> -->
+  <view class="infoAll">
+    <van-cell-group>
+      <van-field
+        value="{{username}}"
+        label="用户名:"
+        border="{{ false }}"
+        bindinput='nameInput'
+        input-align="right"
+        />
+    </van-cell-group>
+    <van-cell-group>
+      <van-field
+        value="{{tel}}"
+        label="手机号:"
+        bindinput='telInput'
+        border="{{ false }}"
+        input-align="right"
+        />
+    </van-cell-group>
+     <!-- <van-cell-group>
+      <van-field
+        bindinput='briInput'
+        value="{{birthday}}"
+        label="生日:"
+        border="{{ false }}"
+        input-align="right"
+        />
+    </van-cell-group>  -->
+  </view>
+  <!-- 确认修改 -->
+  <view class="Submit">
+     <button bindtap="Submit" class='btn' type='primary' lang="zh_CN" >
+            确认修改
+    </button>
+  </view>
+</view>
+<!-- 生日选择弹出层 -->
+<!-- <van-popup show="{{ show }}" closeable position="bottom" custom-style="height: 20%" bind:close="onClose"> -->
+<!-- <van-datetime-picker
+  type="date"
+  value="{{ currentDate }}"
+  bind:input="onInput"
+  min-date="{{ minDate }}"
+  class="dataChoice"
+  formatter="{{ formatter }}"
+/> -->
+<!-- </van-popup> -->
+
 <!-- 底部导航条 -->
 <view>
   <van-tabbar active="{{ active }}" bind:change="onChange">
     <van-tabbar-item name="home" icon="home-o">标签</van-tabbar-item>
     <van-tabbar-item name="mine" icon="friends-o">标签</van-tabbar-item>
   </van-tabbar>
-  <!-- <i-tab-bar current="{{ current }}" bindchange="handleChange" fixed="{{barFixed}}">
-      <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="寝室管理"></i-tab-bar-item>
-      <i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" title="个人中心"></i-tab-bar-item>
-  </i-tab-bar> -->
 </view>

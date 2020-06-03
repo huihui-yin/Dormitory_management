@@ -1,2 +1,6 @@
 <!--pages/notice/notice.wxml-->
-<text>pages/notice/notice.wxml</text>
+<!-- <text>pages/notice/notice.wxml</text> -->
+<!-- 新增公告 -->
+<view class="add">
+  <van-button icon="add-o" type="primary" class="addbtn" bind:click="addnotice">新增公告</van-button>
+</view>

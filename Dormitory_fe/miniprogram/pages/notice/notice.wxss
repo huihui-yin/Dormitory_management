@@ -1,1 +1,5 @@
 /* pages/notice/notice.wxss */
+.add{
+  display: flex;
+  justify-content: flex-end;
+}
