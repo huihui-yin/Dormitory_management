@@ -33,7 +33,7 @@ Page({
     this.setData({ active: event.detail });
     console.log('active', this.data.active);
     if(event.detail == 'mine'){
-          wx.navigateTo({
+          wx.redirectTo({
             url: '/pages/mine/mine'
           });
     }
