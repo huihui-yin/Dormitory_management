@@ -12,3 +12,6 @@
   font-size: 35rpx;
   background-color: #7facd6 !important;
 }
+.newbtn{
+  background-color: #7facd6 !important;
+}

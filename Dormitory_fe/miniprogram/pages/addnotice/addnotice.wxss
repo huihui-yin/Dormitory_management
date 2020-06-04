@@ -1,0 +1,15 @@
+/* pages/addnotice/addnotice.wxss */
+.noticeform{
+  margin-top: 40px;
+}
+.noticeTitle{
+  border: 1px solid #ebedf0;
+  width: 90%;
+  margin: 0 auto;
+}
+.noticeCon{
+  height: 200rpx;
+  border: 1px solid #ebedf0;
+  width: 90%;
+  margin: 10px auto;
+}

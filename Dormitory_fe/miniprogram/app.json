@@ -13,7 +13,8 @@
     "pages/notice/notice",
     "pages/newDor/newDor",
     "pages/info/info",
-    "pages/addmaintan/addmaintan"
+    "pages/addmaintan/addmaintan",
+    "pages/addnotice/addnotice"
   ],
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
