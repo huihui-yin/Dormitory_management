@@ -1,6 +1,58 @@
-<!--pages/notice/notice.wxml-->
-<!-- <text>pages/notice/notice.wxml</text> -->
 <!-- 新增公告 -->
 <view class="add">
-  <van-button icon="add-o" type="primary" class="addbtn" bind:click="addnotice">新增公告</van-button>
+  <van-button wx:if="{{roomRole}}" icon="add-o" type="primary" color="#7facd6" class="newbtn" bind:click="addnotice">发布公告</van-button>
+</view>
+<view wx:if="{{isnotice}}" class="noticeCon">
+  <!-- 室长看到的公告 -->
+  <view wx:if="{{roomRole}}" class="noticeOne"  wx:for="{{records}}" wx:for-item="itemName" wx:key="id">
+    <van-swipe-cell right-width="{{ 65 }}">
+      <van-cell-group>
+        <view class='firstblock'>
+            <view class='person'>
+              <!-- 公告标题 -->
+              <view class='name'>
+                <text class='showname'>{{itemName.name}}</text>
+              </view>
+              <!-- 公告创建时间 -->
+              <view class='time'>
+                <text class='showtime'>{{itemName.createTime}}</text>
+              </view>
+            </view>
+          </view>
+          <!-- 公告内容 -->
+          <view class='secondblock'>
+            <text class='content'>{{itemName.content}}</text>
+          </view>
+        <!-- </view> -->
+      </van-cell-group>
+      <view slot="right" class="delete" bindtap="deleteNot" data-index='{{itemName.id}}'>删除</view>
+    </van-swipe-cell>
+  </view>
+  <!-- 成员看到的公告 -->
+  <view wx:if="{{roomRole == false}}" class="noticeOne"  wx:for="{{records}}" wx:for-item="itemName" wx:key="id">
+      <van-cell-group>
+        <view class='firstblock'>
+            <view class='person'>  
+              <view class='name'>
+                <text class='showname'>{{itemName.name}}</text>
+              </view>
+              <view class='time'>
+                <text class='showtime'>{{itemName.createTime}}</text>
+              </view>
+            </view>
+        </view>
+        <view class='secondblock'>
+            <text class='content'>{{itemName.content}}</text>
+        </view>
+      </van-cell-group>
+  </view>
+</view>
+<!-- 无公告 -->
+<view wx:else>
+   <view class="noRes">
+      <view class="noResCon">
+        <image class="noResImg" src="../../images/noRes.png" alt="" ></image>
+        <view class="noword">暂无公告</view>
+      </view>
+    </view>
 </view>
