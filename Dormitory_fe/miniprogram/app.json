@@ -14,7 +14,8 @@
     "pages/newDor/newDor",
     "pages/info/info",
     "pages/addmaintan/addmaintan",
-    "pages/addnotice/addnotice"
+    "pages/addnotice/addnotice",
+    "pages/addclean/addclean"
   ],
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",

@@ -1,0 +1,23 @@
+<!--新增卫生安排页面-->
+<!-- 安排人 -->
+<view class="cleanform">
+    <view class="cleanuser">
+      <van-field label="打扫时间" placeholder="请输入一个打扫时间或时间周期"  bindinput="timeInput"/>
+    </view>
+   <!-- 选择成员打扫 -->
+    <view class="userInfoCon">
+      <view class="uersTitle">选择打扫成员:</view>
+      <view class="userInfoMain">
+        <view class="oneUser" wx:for="{{users}}" wx:key="id">
+          <image src="../../images/check.png" class="check {{userIndex==index?'display':'none'}}" ></image>
+          <image class="userImg" bindtap="userDetail" data-index='{{index}}'  src='{{item.avatarUrl}}'></image> 
+          <view class="username">{{item.username}}</view> 
+        </view>
+      </view>
+    </view>
+    <view class="Submit">
+      <button bindtap="Submit" class='btn' type='primary' lang="zh_CN" >
+              发布
+      </button>
+    </view> 
+</view>

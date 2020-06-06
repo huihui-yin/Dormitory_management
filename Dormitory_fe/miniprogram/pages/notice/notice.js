@@ -32,11 +32,11 @@ Page({
       },
         success: (res) => {
           let data = res.data;
-          let length = data.data.records.length;
-         // console.log('data.data.records.length', data.data.records.length);
           if(data.code == '0000'){
+            let length = data.data.records.length;
+            // console.log('data.data.records.length', data.data.records.length);
             if(length != 0){
-              console.log('有数据的');
+              //console.log('有数据的');
               that.setData({
                 records: data.data.records,
                 isnotice: true
