@@ -13,7 +13,7 @@
   </view>
   <!-- 寝室人员区域 -->
   <view class="userInfoCon">
-  <view class="uersTitle">寝室成员:{{index}}</view>
+    <view class="uersTitle">寝室成员:</view>
     <view class="userInfoMain">
       <view class="oneUser" wx:for="{{users}}">
         <image bindtap="userDetail" data-index='{{item}}'  src='{{item.avatarUrl}}'></image> 
@@ -24,10 +24,6 @@
   <!-- 寝室信息详情 -->
   <!-- 室长看到的 -->
   <view wx:if='{{roomLeader}}' class="infoDetCon">
-    <!-- <view class="dorName">
-      <text>寝室id:</text>
-      <text>{{room.id}}</text>
-    </view> -->
     <van-cell-group>
       <van-field
         value="{{room.id}}"

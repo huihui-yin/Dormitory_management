@@ -1,0 +1,47 @@
+.cleanform{
+  margin-top: 10px;
+}
+.userInfoCon{
+  /* height: 300rpx; */
+  width: 100%;
+  padding: 10px 0;
+  background-color: white;
+  margin: 5px 0;
+}
+.uersTitle{
+  padding: 0 15px 5px 15px;
+  font-size: 14px;
+  color: #323233;
+}
+.userInfoMain{
+  display: flex;
+  justify-content: flex-start;
+}
+.oneUser{
+  padding: 0 15px;
+  position: relative;
+}
+.userImg{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.username{
+  font-size: 12px;
+  text-align: center;
+}
+/* 打勾图 */
+.check{
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 0;
+  left: 15px;
+  display: none;
+}
+.none{
+  display: none;
+}
+.display{
+  display: block;
+}

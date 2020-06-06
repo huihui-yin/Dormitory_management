@@ -1,1 +1,92 @@
-/* pages/clean/clean.wxss */
+.add{
+  display: flex;
+  justify-content: flex-end;
+}
+page{
+  background-color: #EFEFEF;
+}
+.cleanOne{
+  background-color: white;
+  margin-bottom: 10px;
+}
+.firstblock{
+  height: 150rpx;
+  width: 92%;
+  margin-left: 4%;
+  margin-right: 4%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.touxiang{
+  width: 130rpx;
+  height: 130rpx;
+}
+
+.person{
+  width: 75%;
+  height: 130rpx;
+  margin-left: 30rpx;
+}
+
+.name{
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 10rpx;
+  flex-direction: row;
+}
+.time{
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 35rpx;
+  flex-direction: row;
+}
+
+.showname{
+  font-size: 30rpx;
+  color: #101010;
+  font-family: PingFangSC-regular;
+  /* font-weight: bold; */
+}
+.showtime{
+  font-size: 25rpx;
+  color: #5E5D5D;
+  font-family: PingFangSC-regular;
+}
+.secondblock{
+  margin-top: 10rpx;
+  margin-left: 4%;
+  margin-right: 4%;
+  padding-bottom: 20rpx;
+}
+.content{
+  font-size: 29rpx;
+  color: #101010;
+  word-break: break-all;
+}
+.delete{
+  width: 65px;
+  height: 100%;
+  font-size: 15px;
+  color: #fff;
+  background-color: #f44;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* 无公告 */
+.noRes{
+  /* position: relative; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100rpx 0;
+}
+.noResImg{
+  width:  110px;
+  height: 80px;
+}
+.noword{
+  text-align: center;
+}

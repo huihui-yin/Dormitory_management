@@ -1,2 +1,55 @@
-<!--pages/clean/clean.wxml-->
-<text>pages/clean/clean.wxml</text>
+<!--寝室卫生安排-->
+<!-- 新增公告 -->
+<view class="add">
+  <van-button wx:if="{{roomRole}}" icon="add-o" type="primary" color="#7facd6" class="newbtn" bind:click="addclean">安排卫生打扫</van-button>
+</view>
+<!-- <view wx:if="{{isnotice}}" class="noticeCon"> -->
+<view class="cleanCon">
+  <!-- 室长看到的卫生安排 -->
+  <view wx:if="{{roomRole}}" class="cleanOne"  wx:for="{{records}}" wx:for-item="itemName" wx:key="id">
+    <van-swipe-cell right-width="{{ 65 }}">
+      <van-cell-group>
+        <view class='firstblock'>
+            <view class='person'>
+              <!-- 寝室打扫时间 -->
+              <view class='time'>
+                <text class='showtime'>打扫时间：{{itemName.cleanTime}}</text>
+              </view>
+              <!-- 打扫人 -->
+               <view class='name'>
+                <text class='showname'>打扫人员：{{itemName.cleaner}}</text>
+              </view>
+            </view>
+          </view>
+        <!-- </view> -->
+      </van-cell-group>
+      <view slot="right" class="delete" bindtap="deleteClean" data-index='{{itemName.id}}'>删除</view>
+    </van-swipe-cell>
+  </view>
+  <!-- 成员看到的卫生安排 -->
+   <view wx:if="{{roomRole == false}}" class="cleanOne"  wx:for="{{records}}" wx:for-item="itemName" wx:key="id">
+      <van-cell-group>
+        <view class='firstblock'>
+            <view class='person'>
+              <!-- 寝室打扫时间 -->
+              <view class='time'>
+                <text class='showtime'>打扫时间：{{itemName.cleanTime}}</text>
+              </view>
+              <!-- 打扫人 -->
+               <view class='name'>
+                <text class='showname'>打扫人员：{{itemName.cleaner}}</text>
+              </view>
+            </view>
+          </view>
+      </van-cell-group>
+  </view>
+</view>
+<!-- 无公告 -->
+<!-- <view wx:else>
+   <view class="noRes">
+      <view class="noResCon">
+        <image class="noResImg" src="../../images/noRes.png" alt="" ></image>
+        <view class="noword">暂无公告</view>
+      </view>
+    </view>
+</view> -->
