@@ -1,2 +1,58 @@
 <!--pages/finance/finance.wxml-->
-<text>pages/finance/finance.wxml</text>
+<!--<text>pages/finance/finance.wxml</text>-->
+<view class="add">
+  <van-button wx:if="{{roomRole}}" icon="add-o" type="primary" color="#7facd6" class="newbtn" bind:click="addfinance">新增收支</van-button>
+</view>
+<!--图标的实现,测试阶段-->
+<!--<view class="box">
+  <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
+</view>-->
+<view class="financeCen" wx:if="{{isfinance}}">
+   <!--查询-->
+   <view class="search">
+     <van-search value="{{ fromDate }}" placeholder="开始时间" bind:focus="fromDisplay" class="fromSearch" />
+     <!--时间选择器-->
+     <van-calendar show="{{ fromshow }}" bind:close="fromClose" bind:confirm="fromConfirm" min-date="{{minDate}}" />
+     <van-search value="{{ toDate }}" placeholder="结束时间"  bind:focus="toDisplay" class="toSearch" />
+     <!--时间选择器-->
+     <van-calendar show="{{ toshow }}" bind:close="toClose" bind:confirm="toConfirm"  min-date="{{minDate}}" />
+     <van-button size="small" type="info" class="btnSearch" bind:click="dateSearch" >查询</van-button>
+   </view>
+   <!--室长看到的收支信息-->
+   <view  wx:if="{{roomRole}}">
+      <van-collapse value="{{ activeNames }}" bind:change="onChange">
+        <van-collapse-item wx:for="{{allfinance}}" wx:key="key" wx:ket="{{item.id}}" title="{{item.classify}}" name="{{item.id}}" value="{{item.modifyTime}}">
+           <!--下滑的内容-->
+           <van-cell-group>
+              <van-cell title="{{item.moneyReason}}" value="收支{{item.money}}" />
+              <van-cell title="寝室余额" value="{{item.balance}}" />
+            </van-cell-group>
+            <view class="btn">
+                <van-button size="small" type="danger" calss="delete" bindtap="deleteFinance" data-index='{{item.id}}'>删除</van-button>
+            </view>
+        </van-collapse-item>
+      </van-collapse>
+   </view>
+   <!--成员看到的收支信息-->
+   <view wx:if="{{roomRole==false}}">
+      <van-collapse value="{{ activeNames }}" bind:change="onChange">
+        <van-collapse-item wx:for="{{allfinance}}" wx:key="key" wx:ket="{{item.id}}" title="{{item.classify}}" name="{{item.id}}" value="{{item.modifyTime}}">
+           <van-cell-group>
+              <van-cell title="{{item.moneyReason}}" value="收支{{item.money}}" />
+              <van-cell title="寝室余额" value="{{item.balance}}" />
+            </van-cell-group>
+        </van-collapse-item>
+      </van-collapse>
+   </view>
+   <view class="bottom">
+      <van-button round type="info" class="searchall" bind:click="searchAll" block>查询全部</van-button>
+   </view>
+</view>
+<view wx:else>
+   <view class="noRes">
+      <view class="noResCon">
+        <image class="noResImg" src="../../images/noRes.png" alt="" ></image>
+        <view class="noword">暂无收支</view>
+      </view>
+    </view>
+</view>
