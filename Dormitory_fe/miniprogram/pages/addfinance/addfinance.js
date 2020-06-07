@@ -1,18 +1,20 @@
-// pages/addmaintan/addmaintan.js.js
+// pages/addfinance/addfinance.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    description:"",
-    item:"",
+    moneyReson:"",
+    classify:"",
     roomId:"",
+    money:"",
     areaList:{
       province_list: {
-        110000: '电器',
-        120000: '家具',
-        130000:'洗漱台'
+        110000: '寝室电费',
+        120000: '寝室网费',
+        130000:'寝室聚餐',
+        14000:'寝室外出'
       }
     },
     hiddenSelect: false
@@ -28,19 +30,27 @@ Page({
   selectSumbit (e) {
     //console.log('e.detail.values', e.detail.values);
     this.setData({
-      item: e.detail.values[0].name
+      classify: e.detail.values[0].name
     })
     //console.log('item', this.data.item);
     this.selectDisply();
   },
-  maindes: function (e) {
-    this.setData({
-      description: e.detail
-    })
-  },
   isRoomid: function (e)
   {
      this.data.roomId=e.datail;
+     //console.log('roomId', this.data.roomId);
+  },
+  getReson: function (e)
+  {
+    this.setData({
+      moneyReson: e.detail
+    })
+  },
+  isMoney: function (e)
+  {
+    this.setData({
+      money: e.detail
+    })
      //console.log('roomId', this.data.roomId);
   },
   submit(){
@@ -53,73 +63,91 @@ Page({
         success: function (res) { }
       })
     }
-    else if (that.data.description == '') {
+    else if (that.data.moneyReson == '') {
       wx.showModal({
         title: '提示！',
         showCancel: false,
-        content: '请输入保修描述！',
+        content: '请输入收支原因',
         success: function (res) { }
       })
     }
-    else
-    {
+    else if (that.data.money == '') {
+      wx.showModal({
+        title: '提示！',
+        showCancel: false,
+        content: '请输入收支金额',
+        success: function (res) { }
+      })
+    }
+    else if (that.data.classify == '') {
+      wx.showModal({
+        title: '提示！',
+        showCancel: false,
+        content: '请选择收支分类',
+        success: function (res) { }
+      })
+    }
+    else{
       console.log(this.data.roomId);
-      console.log(this.data.description);
-      console.log(this.data.item);
+      console.log(this.data.moneyReson);
+      console.log(this.data.money);
+      console.log(this.data.classify);
       wx.request({
-        url: getApp().globalData.api + '/maintan',
+        url: getApp().globalData.api + '/finance/insert',
         header: {
           'Authorization': getApp().globalData.tokenHead + ' '+getApp().globalData.token,
           'content-type':'multipart/form-data; boundary=XXX'
         },
         method: "post",
         data:'\r\n--XXX' +
-        '\r\nContent-Disposition: form-data; name="description"' +
+        '\r\nContent-Disposition: form-data; name="moneyReason"' +
         '\r\n' +
-        '\r\n' +that.data.description+
+        '\r\n' +that.data.moneyReson+
         '\r\n--XXX' +
         '\r\nContent-Disposition: form-data; name="roomId"' +
         '\r\n' +
         '\r\n' + that.data.roomId +
         '\r\n--XXX' +
-        '\r\nContent-Disposition: form-data; name="item"' +
+        '\r\nContent-Disposition: form-data; name="classify"' +
         '\r\n' +
-        '\r\n' + that.data.item +
+        '\r\n' + that.data.classify +
+        '\r\n--XXX' +
+        '\r\nContent-Disposition: form-data; name="money"' +
+        '\r\n' +
+        '\r\n' + that.data.money +
         '\r\n--XXX' +
         '\r\nContent-Disposition: form-data; name="code"' +
         '\r\n' +
         '\r\n' + getApp().globalData.code +
         '\r\n--XXX' ,
-          success: (res) => {
-            let data = res.data;
-            console.log('res.data', data);
-            // 登录成功
-            if(data.code == '0000'){
-               wx.showModal({
-                showCancel: false,
-                content: '提交成功',
-                showCancel: false,
-                success: function (res) { }
-              })
-              wx.redirectTo({
-                url: '/pages/group/group'
-              })
-            }
-            else{
-              wx.showModal({
-                content: data.msg,
-                success: function (res) {
-                }
-              })
-            }
+        success: (res) => {
+          let data = res.data;
+          console.log('res.data', data);
+          if(data.code == '0000'){
+             wx.showModal({
+              showCancel: false,
+              content: '提交成功',
+              showCancel: false,
+              success: function (res) { }
+            })
+            wx.redirectTo({
+              url: '/pages/group/group'
+            })
+          }
+          else{
+            wx.showModal({
+              content: data.msg,
+              success: function (res) {
+              }
+            })
+          }
+        },
+          fail:  (err) => {
+            console.log(err);
           },
-            fail:  (err) => {
-              console.log(err);
-            },
       })
     }
   },
-
   /**
    * 生命周期函数--监听页面加载
    */

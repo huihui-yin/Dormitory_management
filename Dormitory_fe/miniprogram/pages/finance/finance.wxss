@@ -1,1 +1,55 @@
 /* pages/finance/finance.wxss */
+/*.box {
+	width:100%;
+	height:200px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}*/
+.add{
+  display: flex;
+  justify-content: flex-end;
+}
+.btn{
+	display: flex;
+	justify-content: flex-end;
+	background-color:#fff !important;
+}
+/* 无收支 */
+.noRes{
+  /* position: relative; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100rpx 0;
+}
+.noResImg{
+  width:  110px;
+  height: 80px;
+}
+.noword{
+  text-align: center;
+}
+.search{
+  display: flex;
+  flex-wrap: nowrap;
+}
+.fromSearch{
+  width: 40%;
+}
+.toSearch{
+  width: 40%;
+}
+.btnSearch{
+  padding-top: 12px;
+}
+.bottom{
+  position:fixed;
+  bottom:0px;
+  width:100%;
+}
+.searchall{
+  width:80% !important;
+}

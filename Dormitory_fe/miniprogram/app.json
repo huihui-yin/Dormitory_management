@@ -2,7 +2,7 @@
   "pages": [
     "pages/load/load",
     "pages/group/group",
-    "pages/mine/mine" ,
+    "pages/mine/mine",
     "pages/bottom_menu/bottom_menu",
     "pages/login/login",
     "pages/sigin/sigin",
@@ -15,7 +15,8 @@
     "pages/info/info",
     "pages/addmaintan/addmaintan",
     "pages/addnotice/addnotice",
-    "pages/addclean/addclean"
+    "pages/addclean/addclean",
+    "pages/addfinance/addfinance"
   ],
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
@@ -32,7 +33,11 @@
     "van-cell": "@vant/weapp/cell/index",
     "van-cell-group": "@vant/weapp/cell-group/index",
     "van-dialog": "@vant/weapp/dialog/index",
-    "van-datetime-picker": "@vant/weapp/datetime-picker/index"
+    "van-datetime-picker": "@vant/weapp/datetime-picker/index",
+    "van-collapse": "@vant/weapp/collapse/index",
+    "van-collapse-item": "@vant/weapp/collapse-item/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-calendar": "@vant/weapp/calendar/index"
   },
   "window": {
     "backgroundColor": "#F6F6F6",

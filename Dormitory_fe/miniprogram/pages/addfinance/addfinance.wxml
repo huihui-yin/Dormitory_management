@@ -1,0 +1,42 @@
+<!--pages/addfinance/addfinance.wxml-->
+<!--<text>pages/addfinance/addfinance.wxml</text>-->
+<view class="financeIcon">
+  <van-icon name="gold-coin-o" size="120px" />
+</view>
+<view class="addmian">
+   <view class="roomId">
+     <van-field
+        value="{{ roomId }}"
+        border="{{ false }}"
+        label="寝室ID"
+        required
+        border="{{ false }}"
+        bindinput="isRoomid"
+        tyep='number'
+    />
+   </view>
+   <view class="roomReason">
+     <van-field required label="收支原因" placeholder="请输入原因" bindinput="getReson" />
+   </view>
+   <view class="roomMoney">
+      <van-field border="{{ false }}" placeholder="请输入金额大小" label="收支金额" 
+        required border="{{ false }}" tyep='number' bindinput="isMoney" 
+    />
+   </view>
+   <view class="roomClassify">
+   <van-field value="{{ classify }}" required
+   label="收支分类"
+   placeholder="请选择分类"
+   bindtap="selectDisply" />
+   </view>
+   <van-button type="primary" size="large" bind:click="submit">提交收支</van-button>
+</view>
+<!--下拉选择器-->
+<van-area 
+    wx:if="{{hiddenSelect}}" 
+    bind:confirm="selectSumbit" 
+    bind:cancel="selectDisply"
+    class="newDorSelect" 
+    area-list="{{ areaList }}" 
+    value="110000" 
+    columns-num="{{ 1 }}"/>
