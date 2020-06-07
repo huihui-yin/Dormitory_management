@@ -16,12 +16,12 @@
     </view>
     <!-- 对寝室的操作 -->
     <view class="dorOperate">
-        <i-cell title="寝室资金" is-link url="/pages/finance/finance"></i-cell>
-        <i-cell title="寝室卫生安排" is-link url="/pages/clean/clean"></i-cell>
-        <i-cell title="寝室报修" is-link url="/pages/maintan/maintan"></i-cell>
-        <i-cell title="寝室投票" is-link url="/pages/poll/poll"></i-cell>
-        <i-cell title="寝室公告" is-link url="/pages/notice/notice"></i-cell>
-        <i-cell title="寝室信息详情" is-link url="/pages/info/info"></i-cell>
+        <i-cell title="寝室资金" is-link url="/pages/finance/finance"><i-icon class="listIcon" type="integral" size="25" color="#808081" /></i-cell>
+        <i-cell title="寝室卫生安排" is-link url="/pages/clean/clean"><i-icon class="listIcon" type="document" size="25" color="#808081" /></i-cell>
+        <i-cell title="寝室报修" is-link url="/pages/maintan/maintan"><i-icon class="listIcon" type="setup" size="25" color="#808081" /></i-cell>
+        <i-cell title="寝室投票" is-link url="/pages/poll/poll"><i-icon class="listIcon" type="like" size="25" color="#808081" /></i-cell>
+        <i-cell title="寝室公告" is-link url="/pages/notice/notice"><i-icon class="listIcon" type="systemprompt" size="25" color="#808081" /></i-cell>
+        <i-cell title="寝室信息详情" is-link url="/pages/info/info"><i-icon class="listIcon" type="activity" size="25" color="#808081" /></i-cell>
     </view>
   </view>
   <view style="width:100%;height:50px"></view>

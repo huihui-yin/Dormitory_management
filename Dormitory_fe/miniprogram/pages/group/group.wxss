@@ -97,7 +97,13 @@ text{
   margin: 0 auto;
 }
 i-cell{
-  padding: 20rpx
+  padding: 20rpx;
+}
+.listIcon{
+  position: absolute;
+  top: 50%;
+  left: 20rpx;
+  transform: translate(0%, -50%);
 }
 /* 导航条 */
 .bottom{

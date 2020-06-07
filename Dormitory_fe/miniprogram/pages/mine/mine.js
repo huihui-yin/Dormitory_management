@@ -10,6 +10,7 @@ Page({
     // 用户信息
     username: '',
     tel: '',
+    email: '',
     // 修改后的用户名
     usernew: '',
     // birthday: '',
@@ -52,6 +53,7 @@ Page({
                 that.setData({
                   username: data.username,
                   tel: data.tel,
+                  email: data.email
                   // birthday: data.birthday,
                   // birthday: data.birthday==null?'(暂无生日信息)':data.birthday,
                 })
@@ -71,6 +73,12 @@ Page({
       this.setData({
         tel: e.detail
       })
+    },
+    emailInput (e) {
+      this.setData({
+        email: e.detail
+      })
+      console.log("邮箱：",this.data.email);
     },
     // 日期弹窗
     // showPopup() {
@@ -103,9 +111,9 @@ Page({
     // 确认修改
     Submit () {
       var that = this;
-      console.log("username: ",that.data.username);
-      console.log("usernew: ",that.data.usernew);
-      console.log("tel: ", that.data.tel);
+      //console.log("username: ",that.data.username);
+      //console.log("usernew: ",that.data.usernew);
+      //console.log("tel: ", that.data.tel);
       var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
       if (that.data.username == '') {
         wx.showModal({
@@ -114,7 +122,7 @@ Page({
           showCancel: false,
           success(res) {}
         })
-      } else if (that.data.tel == '') {
+      } else if (that.data.tel == '' || that.data.tel == null) {
         wx.showModal({
           title: '提示！',
           content: '请输入手机号！',
@@ -128,10 +136,17 @@ Page({
           showCancel: false,
           success(res) {}
         })
+      }else if (that.data.email == '' || that.data.email == null) {
+        wx.showModal({
+          title: '提示！',
+          content: '请输入个人邮箱！',
+          showCancel: false,
+          success(res) {}
+        })
       } else {
         // 用户名修改
         if(that.data.usernew != that.data.username && that.data.usernew != ''){
-          console.log('用户名修改');
+         // console.log('用户名修改');
           wx.request({
             url:getApp().globalData.api + '/user',
             method:'PUT',
@@ -143,6 +158,10 @@ Page({
               '\r\nContent-Disposition: form-data; name="tel"' +
               '\r\n' +
               '\r\n' +that.data.tel+
+              '\r\n--XXX' +
+              '\r\nContent-Disposition: form-data; name="email"' +
+              '\r\n' +
+              '\r\n' +that.data.email+
               '\r\n--XXX' +
               '\r\nContent-Disposition: form-data; name="username"' +
               '\r\n' +
@@ -176,7 +195,7 @@ Page({
         }
         // 用户名没修改
         else{
-          console.log('用户名没修改');
+          //console.log('用户名没修改');
           wx.request({
             url:getApp().globalData.api + '/user',
             method:'PUT',
@@ -185,6 +204,10 @@ Page({
               'Authorization': getApp().globalData.tokenHead + ' '+getApp().globalData.token
             },
             data:'\r\n--XXX' +
+              '\r\nContent-Disposition: form-data; name="email"' +
+              '\r\n' +
+              '\r\n' +that.data.email+
+              '\r\n--XXX' +
               '\r\nContent-Disposition: form-data; name="tel"' +
               '\r\n' +
               '\r\n' +that.data.tel+

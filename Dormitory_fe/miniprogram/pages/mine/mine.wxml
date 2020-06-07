@@ -9,7 +9,7 @@
 </scroll-view>
 <!-- 用户信息 -->
 <view class="userInfo">
-  <!-- <view class="infoTitle">基本资料</view> -->
+  <view class="infoTitle">完善个人资料</view>
   <view class="infoAll">
     <van-cell-group>
       <van-field
@@ -25,6 +25,15 @@
         value="{{tel}}"
         label="手机号:"
         bindinput='telInput'
+        border="{{ false }}"
+        input-align="right"
+        />
+    </van-cell-group>
+    <van-cell-group>
+      <van-field
+        value="{{email}}"
+        label="邮箱:"
+        bindinput='emailInput'
         border="{{ false }}"
         input-align="right"
         />
