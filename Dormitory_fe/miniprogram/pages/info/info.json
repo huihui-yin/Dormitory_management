@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "i-action-sheet": "../../dist/action-sheet/index",
-    "navigationBarTitleText": "寝室信息"
-  }
+    "i-action-sheet": "../../dist/action-sheet/index"
+  },
+  "navigationBarTitleText": "寝室信息"
 }
