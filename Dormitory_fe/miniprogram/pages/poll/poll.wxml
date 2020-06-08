@@ -1,2 +1,8 @@
 <!--pages/poll/poll.wxml-->
-<text>pages/poll/poll.wxml</text>
+<view class="add">
+<button bindtap="addpoll" class='btn'  type='primary' lang="zh_CN" wx:if="{{roomRole}}">新增投票</button>
+</view>
+<view class="pollCenter">
+   <!--室长看到的投票界面-->
+   <view class="leaderPoll"></view>
+</view>
