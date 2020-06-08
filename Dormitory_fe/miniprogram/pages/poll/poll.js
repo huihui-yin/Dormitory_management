@@ -8,7 +8,7 @@ Page({
     roomRole:false
   },
   addpoll(){
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/addpoll/addpoll'
     })
   },

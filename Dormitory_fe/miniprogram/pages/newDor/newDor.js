@@ -189,6 +189,7 @@ Page({
    */
   onLoad: function (options) {
     console.log('hiddenSelect',this.data.hiddenSelect);
+    getApp().globalData.page = 1;
   },
 
   /**

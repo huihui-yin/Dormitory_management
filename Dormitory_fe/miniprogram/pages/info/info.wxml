@@ -4,7 +4,7 @@
   <!-- 寝室昵称 ，寝室id ，地址 -->
   <view class = 'topInfo'>
     <view class = 'dorImg'>
-      <image src="../../images/dor1.png"></image>
+      <image src="../../images/dor.png"></image>
     </view>
     <view class = 'dorWord'>
       <view class="text1">{{room.roomName}}</view>
@@ -15,7 +15,8 @@
   <view class="userInfoCon">
     <view class="uersTitle">寝室成员:</view>
     <view class="userInfoMain">
-      <view class="oneUser" wx:for="{{users}}">
+      <view class="oneUser" wx:for="{{users}}" wx:key="name">
+        <text wx:if="{{item.roles[0].name == 'leader'}}" class="leader colortext" >室长</text>
         <image bindtap="userDetail" data-index='{{item}}'  src='{{item.avatarUrl}}'></image> 
         <view class="username">{{item.username}}</view> 
       </view>
@@ -110,7 +111,7 @@
   </view>
   <!-- 确认修改 -->
   <view wx:if="{{roomLeader}}" class="exitDor" style='color: #333' bindtap="modSure">
-    <text class="exitWord">确认修改</text>
+    <text class="colortext">确认修改</text>
   </view>
   <!-- 退出寝室 -->
   <view class="exitDor" bindtap="exitDor">

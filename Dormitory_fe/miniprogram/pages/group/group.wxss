@@ -4,8 +4,8 @@
   font-family: SimSun;
   display: flex;
   justify-content:center;
-  /* color:#333; */
   border:1px solid #818181;
+  /* border:1px solid #3f9dfb; */
   border-radius: 10px;
   width: 80%;
   margin: 150rpx auto 100rpx auto;
@@ -31,6 +31,9 @@ text{
 .searchId{
   width: 90%;
   margin: 50rpx auto;
+}
+.van-search__content--round {
+  background-color: #fff !important;
 }
 /* 搜索无数据 */
 .noRes{

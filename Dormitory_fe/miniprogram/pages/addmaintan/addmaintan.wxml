@@ -15,13 +15,14 @@
       tyep='number'
     />
   </view>
+  <view class="maintanItem">
+    <van-field disabled value="{{ item }}" required label="报修项目" placeholder="请选择项目" bindtap="selectDisply" />
+  </view>
   <view class="maintanDes">
     <van-field required label="报修描述" placeholder="请输入描述"  bindinput="maindes"/>
   </view>
-  <view class="maintanItem">
-    <van-field value="{{ item }}" required label="报修项目" placeholder="请选择项目" bindtap="selectDisply" />
-  </view>
-  <van-button type="primary" size="large" bind:click="submit">提交报修</van-button>
+  <!-- <van-button type="primary" size="large" bind:click="submit">提交报修</van-button> -->
+     <button bindtap="submit" class='btn' type='primary' lang="zh_CN" >提交报修</button>
 </view>
 <!--下拉选择器-->
 <van-area 

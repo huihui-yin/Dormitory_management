@@ -36,22 +36,20 @@ Page({
           let data = res.data;
           console.log('res.data', data);
           if(data.code == '0000'){
-            let length = data.data.records.length;
-            console.log('data.data.records.length', data.data.records.length);
-            if(length != 0){
+            if(data.data != null){
               console.log('有数据的');
               that.setData({
-                records: data.data.records,
-                isnotice: true
+                records: data.data,
+                isclean: true
               })
              // console.log('records', that.data.records);
             }
-            else{
-              that.setData({
-                isnotice: false
-              })
-            }
-            console.log('isnotice', that.data.isnotice);
+            // else{
+            //   that.setData({
+            //     isclean: false
+            //   })
+            // }
+            console.log('isclean', that.data.isclean);
           }
           else{
             wx.showModal({

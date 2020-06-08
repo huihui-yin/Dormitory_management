@@ -1,5 +1,6 @@
 /* 寝室昵称 ，寝室id ，地址  */
 .infoContain{
+  /* background-color: #f6f6f6; */
   background-color: #f6f6f6;
   height: 100vh;
 }
@@ -31,6 +32,15 @@
   padding: 10px 0;
   background-color: white;
   margin: 5px 0;
+  /* position: relative; */
+}
+/* 室长标志 */
+.leader{
+  width: 50px;
+  position: absolute;
+  top: 0;
+  left: 10px;
+  font-size: 13px;
 }
 .userInfoMain{
   display: flex;
@@ -41,6 +51,7 @@
 }
 .oneUser{
   padding: 0 15px;
+  position: relative;
 }
 .userInfoMain image{
   width: 50px;

@@ -6,16 +6,35 @@ Page({
    */
   data: {
     users: [],
+    // 周选择器
+    columns: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+    timeDisplay: false,
     // 输入的打扫时间
     cleanTime: '',
+    cleanValue: '',
     // 选择的寝室用户
     userIndex: -1,
-    cleaner: ''
+    cleaner: '',
   },
   // 输入打扫时间
-  timeInput (e) {
+  timeInput () {
     this.setData({
-      cleanTime:e.detail
+      timeDisplay: true
+    });
+  },
+  onConfirm(event) {
+    const { picker, value, index } = event.detail;
+    console.log(`当前值：${value}, 当前索引：${index}`);
+    this.setData({
+      timeDisplay: false,
+      cleanValue: value,
+      cleanTime: index+1
+    });
+    console.log("cleanTime:",this.data.cleanTime);
+  },
+  onCancel() {
+    this.setData({
+      timeDisplay: false
     });
   },
   // 点击寝室成员头像
@@ -58,7 +77,7 @@ Page({
         data:'\r\n--XXX' +
           '\r\nContent-Disposition: form-data; name="cleanTime"' +
           '\r\n' +
-          '\r\n' +that.data.cleanTime+
+          '\r\n' +that.data.cleanValue+
           '\r\n--XXX' +
           '\r\nContent-Disposition: form-data; name="cleaner"' +
           '\r\n' +

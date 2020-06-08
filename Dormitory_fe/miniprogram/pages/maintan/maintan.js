@@ -5,12 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    // 是否有报修
+    ismaintain: false,
     allmaintan:[],
     deleteId:""
   },
   //新增报修信息
   addmaintan(){
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/addmaintan/addmaintan'
     })
   },
@@ -83,10 +85,25 @@ Page({
       method:'GET',
       success: function (res) {
         let data = res.data;
-        if(data.data !== null){
-          //console.log('hhh');
+        // if(data.data !== null){
+        //   //console.log('hhh');
+        //   that.setData({
+        //     allmaintan:data.data.records
+        //   })
+        // }
+        let length = data.data.records.length;
+        // console.log('data.data.records.length', data.data.records.length);
+        if(length != 0){
+          console.log('有数据的');
           that.setData({
-            allmaintan:data.data.records
+            allmaintan: data.data.records,
+            ismaintain: true
+          })
+         // console.log('records', that.data.records);
+        }
+        else{
+          that.setData({
+            ismaintain: false
           })
         }
       },

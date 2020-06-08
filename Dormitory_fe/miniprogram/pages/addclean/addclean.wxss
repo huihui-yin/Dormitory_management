@@ -45,3 +45,9 @@
 .display{
   display: block;
 }
+/* 周选择器 */
+.timecheck{
+  position: fixed;
+  bottom:0;
+  width: 100%;
+}

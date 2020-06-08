@@ -1,10 +1,10 @@
 <!--寝室卫生安排-->
 <!-- 新增公告 -->
 <view class="add">
-  <van-button wx:if="{{roomRole}}" icon="add-o" type="primary" color="#7facd6" class="newbtn" bind:click="addclean">安排卫生打扫</van-button>
+  <van-button wx:if="{{roomRole}}" icon="add-o" type="primary" color="#1989fa" class="newbtn" bind:click="addclean">安排卫生打扫</van-button>
 </view>
 <!-- <view wx:if="{{isnotice}}" class="noticeCon"> -->
-<view class="cleanCon">
+<view wx:if="{{isclean}}" class="cleanCon">
   <!-- 室长看到的卫生安排 -->
   <view wx:if="{{roomRole}}" class="cleanOne"  wx:for="{{records}}" wx:for-item="itemName" wx:key="id">
     <van-swipe-cell right-width="{{ 65 }}">
@@ -44,12 +44,12 @@
       </van-cell-group>
   </view>
 </view>
-<!-- 无公告 -->
-<!-- <view wx:else>
+<!-- 无寝室安排 -->
+<view wx:else>
    <view class="noRes">
       <view class="noResCon">
-        <image class="noResImg" src="../../images/noRes.png" alt="" ></image>
-        <view class="noword">暂无公告</view>
+        <image class="noResImg" src="../../images/noRes1.png" alt="" ></image>
+        <view class="noword colortext2">暂无卫生安排</view>
       </view>
     </view>
-</view> -->
+</view>
