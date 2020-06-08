@@ -93,18 +93,25 @@ text{
 }
 /* 寝室操作 */
 .dorOperate{
-  width: 95%;
+  width: 85%;
   margin: 0 auto;
 }
-i-cell{
+van-cell{
   padding: 20rpx;
 }
-.listIcon{
+.van-cell{
+  border-radius: 20px !important;
+  box-shadow: 1px 1px 1px rgb(0,0,0,.1);
+}
+van-icon{
+  font-size: 18px !important;
+}
+/* .listIcon{
   position: absolute;
   top: 50%;
   left: 20rpx;
   transform: translate(0%, -50%);
-}
+} */
 /* 导航条 */
 .bottom{
   position: flex;
