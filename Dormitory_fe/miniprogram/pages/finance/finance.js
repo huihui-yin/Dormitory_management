@@ -38,6 +38,7 @@ Page({
     roomRole:false,
     allfinance: [],
     activeNames:[],
+    balance:"",
     deleteId:"",
     isfinance:false,
     fromDate:'',
@@ -135,8 +136,10 @@ Page({
           {
             that.setData({
               allfinance:data.data.records,
+              balance:data.data.records[0].balance,
               isfinance:true
             })
+            console.log(data.data.records[0].balance);
           }
           else{
             that.setData({
@@ -241,6 +244,10 @@ Page({
   //查询所有信息
   searchAll(){
     this.getallfinance();
+    this.setData({
+      fromDate:'',
+      toDate:''
+    })
   },
 
   /**
