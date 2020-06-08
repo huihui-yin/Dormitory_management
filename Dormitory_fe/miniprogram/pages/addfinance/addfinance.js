@@ -120,12 +120,12 @@ Page({
           let data = res.data;
           console.log('res.data', data);
           if(data.code == '0000'){
-             wx.showModal({
-              showCancel: false,
-              content: '提交成功',
-              showCancel: false,
-              success: function (res) { }
-            })
+            //  wx.showModal({
+            //   showCancel: false,
+            //   content: '提交成功',
+            //   showCancel: false,
+            //   success: function (res) { }
+            // })
             wx.redirectTo({
               url: '/pages/finance/finance'
             })

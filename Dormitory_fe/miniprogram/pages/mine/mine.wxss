@@ -11,23 +11,14 @@ page {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  /* border-bottom: 20rpx solid #efefef; */
 }
-/* .scbg {
-  background-color: #efefef;
-  widows: 100%;
-  left: 0rpx;
-  right: 0rpx;
-  top: 0rpx;
-  bottom: 9%;
-  position: absolute;
-} */
 .deco {
   width: 200rpx;
   height: 200rpx;
   margin: 25rpx;
   border-radius: 10rpx;
-  border: 2px solid #efefef;
+  /* border: 2px solid #efefef; */
+  border: 1px solid #3f9dfb;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -38,17 +29,6 @@ page {
   width: 180rpx;
   height: 180rpx;
 }
-
-/* .nn {
-  margin-top: 40rpx;
-  font-size: 38rpx;
-  color: black;
-  padding-bottom: 40rpx;
-} */
-/* 基本信息处 */
-/* .userInfo{
-  margin-top: 10px;
-} */
 .infoTitle{
   width: 100%;
   background-color: white;

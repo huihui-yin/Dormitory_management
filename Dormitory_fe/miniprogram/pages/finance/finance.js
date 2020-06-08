@@ -1,5 +1,33 @@
 // pages/finance/finance.js
 import * as echarts from '../ec-canvas/echarts';
+// function initChart(canvas,width,height){
+//   const chart = echarts.init(canvas,null,{
+//     width:width,
+//     height:height
+//   })
+//   canvas.setChart(chart)
+//   var option = {
+//     color: ['#FFCC00'],
+//     title: {
+//       text: '本周销量统计图'
+//     },
+//     tooltip: {},
+//     legend: {
+//       data: ['销量']
+//     },
+//     xAxis: {
+//       data: ["周一", "周二", "周三", "周四", "周五", "周六",'周日']
+//     },
+//     yAxis: {},
+//     series: [{
+//       name: '销量',
+//       type: 'bar',
+//       data: [5, 20, 36, 10, 13, 20,38]
+//     }]
+//   };
+//   chart.setOption(option)
+//   return chart
+// }
 /*图表的相关配置
 let chart = null;
 function initChart(canvas, width, height) {
@@ -46,9 +74,7 @@ Page({
     fromshow:false,
     toshow:false,
     minDate:new Date(2018,8,1).getTime(),
-    /*ec: {
-      onInit: initChart
-    }*/
+    // ec:{onInit:initChart}
   },
   toDisplay() {
     this.setData({ toshow: true });
@@ -109,7 +135,7 @@ Page({
   },
   //新增收支情况
   addfinance(){
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/addfinance/addfinance'
     })
   },

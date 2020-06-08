@@ -1,12 +1,25 @@
 <!--pages/maintan/maintan.wxml-->
-<view class="add">
+<!-- <view class="add">
   <van-button icon="add-o" type="primary" class="addbtn" bind:click="addmaintan">报修</van-button>
+</view> -->
+<view class="add">
+  <van-button icon="add-o" type="primary" color="#1989fa" bind:click="addmaintan">报修</van-button>
 </view>
-<view class="allmaintan">
+<view class="allmaintan" wx:if="{{ismaintain}}">
   <van-swipe-cell right-width="{{ 65 }}" wx:for="{{allmaintan}}" wx:ket="{{item.id}}">
     <van-cell-group>
       <van-cell title="{{item.item}}" value="{{item.description}}" />
     </van-cell-group>
     <view slot="right" class="delete" bindtap="deletemaintan" data-index='{{item.id}}'>删除</view>
   </van-swipe-cell>
+</view>
+
+<!-- 无寝室报修-->
+<view wx:else>
+   <view class="noRes">
+      <view class="noResCon">
+        <image class="noResImg" src="../../images/noRes1.png" alt="" ></image>
+        <view class="noword colortext2">暂无报修</view>
+      </view>
+    </view>
 </view>

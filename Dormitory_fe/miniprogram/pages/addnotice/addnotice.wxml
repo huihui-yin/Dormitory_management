@@ -7,7 +7,7 @@
   <view class='noticeTitle'>
     <van-field
       value="{{ name }}"
-      label="公告标题："
+      label="标题："
       bindinput='nameInput'
     />
   </view>
@@ -16,7 +16,7 @@
   <van-field
     value="{{ content }}"
     type="textarea"
-    placeholder="请输入公告内容"
+    placeholder="请输入通知内容"
     autosize
     border="{{ false }}"
     bindinput='contentInput'

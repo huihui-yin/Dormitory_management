@@ -1,6 +1,6 @@
 <!-- 新增公告 -->
 <view class="add">
-  <van-button wx:if="{{roomRole}}" icon="add-o" type="primary" color="#7facd6" class="newbtn" bind:click="addnotice">发布公告</van-button>
+  <van-button wx:if="{{roomRole}}" icon="add-o" type="primary" color="#1989fa" class="newbtn" bind:click="addnotice">发布通知</van-button>
 </view>
 <view wx:if="{{isnotice}}" class="noticeCon">
   <!-- 室长看到的公告 -->
@@ -51,8 +51,8 @@
 <view wx:else>
    <view class="noRes">
       <view class="noResCon">
-        <image class="noResImg" src="../../images/noRes.png" alt="" ></image>
-        <view class="noword">暂无公告</view>
+        <image class="noResImg" src="../../images/noRes1.png" alt="" ></image>
+        <view class="noword colortext2">暂无通知</view>
       </view>
     </view>
 </view>

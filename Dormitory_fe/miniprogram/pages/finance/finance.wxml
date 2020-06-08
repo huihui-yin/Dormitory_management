@@ -1,7 +1,7 @@
 <!--pages/finance/finance.wxml-->
 <!--<text>pages/finance/finance.wxml</text>-->
 <view class="add">
-  <van-button wx:if="{{roomRole}}" icon="add-o" type="primary" color="#7facd6" class="newbtn" bind:click="addfinance">新增收支</van-button>
+  <van-button wx:if="{{roomRole}}" icon="add-o" type="primary" color="#1989fa" class="newbtn" bind:click="addfinance">新增收支</van-button>
 </view>
 <!--图标的实现,测试阶段-->
 <!--<view class="box">
@@ -9,7 +9,7 @@
 </view>-->
 <!--查询-->
 <view class="search">
-     <van-search value="{{ fromDate }}" placeholder="开始时间" bind:focus="fromDisplay" class="fromSearch" />
+     <van-search disabled value="{{ fromDate }}" placeholder="开始时间" bind:focus="fromDisplay" class="fromSearch" />
      <!--时间选择器-->
      <van-popup show="{{ fromshow }}" bind:close="fromClose" position="bottom" custom-style="height: 40%;">
        <van-datetime-picker
@@ -20,7 +20,7 @@
         class="dateChose"
       />
      </van-popup>
-     <van-search value="{{ toDate }}" placeholder="结束时间"  bind:focus="toDisplay" class="toSearch" />
+     <van-search disabled value="{{ toDate }}" placeholder="结束时间"  bind:focus="toDisplay" class="toSearch" />
      <!--时间选择器-->
      <van-popup show="{{ toshow }}" bind:close="toClose" position="bottom" custom-style="height: 40%;">
        <van-datetime-picker
@@ -38,6 +38,11 @@
       <view class="balance"><text>寝室余额:</text><text class="balancemoney">{{balance}}</text></view>
       <van-button round type="info" class="searchall" bind:click="searchAll">查询全部</van-button>
 </view>
+<!-- echarts -->
+<!-- <view class="content-echarts">
+    <ec-canvas id="mychart-line" canvas-id="mychart-line" ec="{{ec}}"></ec-canvas>
+  </view> -->
+<!-- 收支信息 -->
 <view class="financeCen" wx:if="{{isfinance}}">
    <!--室长看到的收支信息-->
    <view  wx:if="{{roomRole}}">
@@ -69,8 +74,8 @@
 <view wx:else>
    <view class="noRes">
       <view class="noResCon">
-        <image class="noResImg" src="../../images/noRes.png" alt="" ></image>
-        <view class="noword">暂无收支</view>
+        <image class="noResImg" src="../../images/noRes1.png" alt="" ></image>
+        <view class="noword colortext2">暂无收支</view>
       </view>
     </view>
 </view>

@@ -15,6 +15,13 @@
         tyep='number'
     />
    </view>
+   <view class="roomClassify">
+    <van-field value="{{ classify }}" required
+    disabled
+    label="收支分类"
+    placeholder="请选择分类"
+    bindtap="selectDisply" />
+   </view>
    <view class="roomReason">
      <van-field required label="收支原因" placeholder="请输入原因" bindinput="getReson" />
    </view>
@@ -23,13 +30,7 @@
         required border="{{ false }}" tyep='number' bindinput="isMoney" 
     />
    </view>
-   <view class="roomClassify">
-   <van-field value="{{ classify }}" required
-   label="收支分类"
-   placeholder="请选择分类"
-   bindtap="selectDisply" />
-   </view>
-   <van-button type="primary" size="large" bind:click="submit">提交收支</van-button>
+   <button bindtap="submit" class='btn' type='primary' lang="zh_CN" >提交收支</button>
 </view>
 <!--下拉选择器-->
 <van-area 

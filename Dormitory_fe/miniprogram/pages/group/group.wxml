@@ -5,7 +5,7 @@
   <view class="dorMain">
     <!-- 寝室信息 -->
     <view class="dorInfo">
-      <image bindtap="next" class="dorIcon" src="../../images/dor1.png"></image>
+      <image bindtap="next" class="dorIcon" src="../../images/dor.png"></image>
       <view>
         <view>
          {{dorId}}
@@ -32,21 +32,21 @@
   <view  class="newContain">
     <view class="newMain">
       <image src="../../images/newDor.png" class="newIcon" bindtap="newDor"></image>
-      <text newWord>创建一个寝室</text>  
+      <text class="colortext2">创建一个寝室</text>  
     </view>
    </view>
    <!--搜索寝室  -->
    <view class="searchId">
     <van-search 
       value="{{ dorIdSearch }}" 
-      placeholder="请输入搜索关键词"
+      placeholder="请输入寝室id号"
       shape="round" 
       bind:search="onSearch" 
       bind:clear="onCancel" 
     />
     <view class="serchResCon" wx:if="{{serchRes}}">
       <view class="ResOne">
-        <view><image src="../../images/dor1.png"></image></view>
+        <view><image src="../../images/dor.png"></image></view>
         <view>
           <view class="text1">{{roomName}}</view>
           <view class="text2">{{roomLocation}}</view>
@@ -59,8 +59,8 @@
     <!-- 无搜索数据 -->
     <view class="noRes"  wx:if="{{noRes}}">
       <view class="noResCon">
-        <image class="noResImg" src="../../images/noRes.png" alt="" ></image>
-        <view>无数据</view>
+        <image class="noResImg" src="../../images/noRes1.png" alt="" ></image>
+        <view style="margin-top:5px" class="colortext2">无数据</view>
       </view>
     </view>
    </view>

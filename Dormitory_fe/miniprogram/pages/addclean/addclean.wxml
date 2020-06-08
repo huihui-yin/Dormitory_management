@@ -2,7 +2,7 @@
 <!-- 安排人 -->
 <view class="cleanform">
     <view class="cleanuser">
-      <van-field label="打扫时间" placeholder="请输入一个打扫时间或时间周期"  bindinput="timeInput"/>
+      <van-field disabled value="{{cleanValue}}" label="打扫时间" placeholder="请选择"   bindtap="timeInput"/>
     </view>
    <!-- 选择成员打扫 -->
     <view class="userInfoCon">
@@ -21,3 +21,10 @@
       </button>
     </view> 
 </view>
+<!-- 卫生打扫时间选择器 -->
+<van-picker 
+class="timecheck {{timeDisplay==true?'display':'none'}}" 
+show-toolbar
+columns="{{ columns }}" 
+ bind:cancel="onCancel"
+bind:confirm="onConfirm"/>

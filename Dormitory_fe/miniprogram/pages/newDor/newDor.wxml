@@ -1,25 +1,8 @@
 <!--新建寝室-->
-<!-- <text>pages/newDor/newDor.wxml</text> -->
 <view class="newDorContain">
-  <!-- 标题 -->
-  <!-- <view class="newDorTitle">
-    <text>创建你的寝室</text>
-  </view> -->
   <!-- 表单 -->
   <view class="newDorForm">
-    <!-- <view class="dorName">
-      <input placeholder="输入寝室名" placeholder-class='plas' class='input' bindinput='nameInput' />
-    </view>
-    <view class="dorName">
-      <input class="input" placeholder="请输入寝室人数" />
-    </view>
-    <view class="dorName">
-          <input class="input" bindtap="selectDisply" placeholder-style="color:gary"  placeholder="请选择寝室位置" value="{{roomLocation}}"/>
-       
-    </view> -->
-
-    <!-- 表单 -->
-    <van-cell-group class="hh">
+    <van-cell-group>
     <view class="inputs">
       <van-field required label="寝室名" placeholder="请输入寝室名"  bindinput="nameInput"/>
     </view>
@@ -27,7 +10,7 @@
       <van-field required type="number" label="寝室人数" placeholder="请输入寝室人数"  bindinput="sizeInput"/>
     </view>
     <view class="inputs">
-      <van-field value="{{ roomLocation }}" required label="寝室位置" placeholder="请选择位置" bindtap="selectDisply" />
+      <van-field disabled value="{{ roomLocation }}" required label="寝室位置" placeholder="请选择位置" bindtap="selectDisply" />
     </view>
     <view class="inputs">
       <van-field required type="number" label="寝室号" placeholder="104" border="{{ false }}"   bindinput="numberInput"/>
