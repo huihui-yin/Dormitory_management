@@ -102,7 +102,7 @@ Page({
                 success: function (res) { }
               })
               wx.redirectTo({
-                url: '/pages/group/group'
+                url: '/pages/maintan/maintan'
               })
             }
             else{

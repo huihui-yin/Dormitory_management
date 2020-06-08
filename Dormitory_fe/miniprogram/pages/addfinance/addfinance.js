@@ -88,10 +88,6 @@ Page({
       })
     }
     else{
-      console.log(this.data.roomId);
-      console.log(this.data.moneyReson);
-      console.log(this.data.money);
-      console.log(this.data.classify);
       wx.request({
         url: getApp().globalData.api + '/finance/insert',
         header: {
@@ -131,7 +127,7 @@ Page({
               success: function (res) { }
             })
             wx.redirectTo({
-              url: '/pages/group/group'
+              url: '/pages/finance/finance'
             })
           }
           else{

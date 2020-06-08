@@ -47,9 +47,17 @@
 }
 .bottom{
   position:fixed;
-  bottom:0px;
+  bottom:5px;
   width:100%;
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid #f2f2f2;
 }
-.searchall{
-  width:80% !important;
+.balance{
+  padding-top: 10px;
+  padding-right: 10px;
+}
+.balancemoney{
+  font-size: 15px;
+  color:#1989fa;
 }

@@ -7,25 +7,46 @@
 <!--<view class="box">
   <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
 </view>-->
-<view class="financeCen" wx:if="{{isfinance}}">
-   <!--查询-->
-   <view class="search">
+<!--查询-->
+<view class="search">
      <van-search value="{{ fromDate }}" placeholder="开始时间" bind:focus="fromDisplay" class="fromSearch" />
      <!--时间选择器-->
-     <van-calendar show="{{ fromshow }}" bind:close="fromClose" bind:confirm="fromConfirm" min-date="{{minDate}}" />
+     <van-popup show="{{ fromshow }}" bind:close="fromClose" position="bottom" custom-style="height: 40%;">
+       <van-datetime-picker
+       title="开始时间选择"
+        type="date"
+        min-date="{{ minDate }}"
+        bind:cancel="fromClose" bind:confirm="fromConfirm"
+        class="dateChose"
+      />
+     </van-popup>
      <van-search value="{{ toDate }}" placeholder="结束时间"  bind:focus="toDisplay" class="toSearch" />
      <!--时间选择器-->
-     <van-calendar show="{{ toshow }}" bind:close="toClose" bind:confirm="toConfirm"  min-date="{{minDate}}" />
+     <van-popup show="{{ toshow }}" bind:close="toClose" position="bottom" custom-style="height: 40%;">
+       <van-datetime-picker
+       title="结束时间选择"
+        type="date"
+        min-date="{{ minDate }}"
+        bind:cancel="toClose" bind:confirm="toConfirm"
+        class="dateChose"
+      />
+     </van-popup>
      <van-button size="small" type="info" class="btnSearch" bind:click="dateSearch" >查询</van-button>
-   </view>
+</view>
+<!--查询全部数据-->
+<view class="bottom">
+      <view class="balance"><text>寝室余额:</text><text class="balancemoney">{{balance}}</text></view>
+      <van-button round type="info" class="searchall" bind:click="searchAll">查询全部</van-button>
+</view>
+<view class="financeCen" wx:if="{{isfinance}}">
    <!--室长看到的收支信息-->
    <view  wx:if="{{roomRole}}">
       <van-collapse value="{{ activeNames }}" bind:change="onChange">
-        <van-collapse-item wx:for="{{allfinance}}" wx:key="key" wx:ket="{{item.id}}" title="{{item.classify}}" name="{{item.id}}" value="{{item.modifyTime}}">
+        <van-collapse-item wx:for="{{allfinance}}" wx:key="key" wx:ket="{{item.id}}" title="{{item.classify}}" name="{{item.id}}" value="收支{{item.money}}">
            <!--下滑的内容-->
            <van-cell-group>
               <van-cell title="{{item.moneyReason}}" value="收支{{item.money}}" />
-              <van-cell title="寝室余额" value="{{item.balance}}" />
+              <van-cell title="收支时间" value="{{item.modifyTime}}" />
             </van-cell-group>
             <view class="btn">
                 <van-button size="small" type="danger" calss="delete" bindtap="deleteFinance" data-index='{{item.id}}'>删除</van-button>
@@ -36,16 +57,13 @@
    <!--成员看到的收支信息-->
    <view wx:if="{{roomRole==false}}">
       <van-collapse value="{{ activeNames }}" bind:change="onChange">
-        <van-collapse-item wx:for="{{allfinance}}" wx:key="key" wx:ket="{{item.id}}" title="{{item.classify}}" name="{{item.id}}" value="{{item.modifyTime}}">
+        <van-collapse-item wx:for="{{allfinance}}" wx:key="key" wx:ket="{{item.id}}" title="{{item.classify}}" name="{{item.id}}" value="收支{{item.money}}">
            <van-cell-group>
               <van-cell title="{{item.moneyReason}}" value="收支{{item.money}}" />
-              <van-cell title="寝室余额" value="{{item.balance}}" />
+              <van-cell title="收支时间" value="{{item.modifyTime}}" />
             </van-cell-group>
         </van-collapse-item>
       </van-collapse>
-   </view>
-   <view class="bottom">
-      <van-button round type="info" class="searchall" bind:click="searchAll" block>查询全部</van-button>
    </view>
 </view>
 <view wx:else>
