@@ -15,7 +15,8 @@
     "pages/addmaintan/addmaintan",
     "pages/addnotice/addnotice",
     "pages/addclean/addclean",
-    "pages/addfinance/addfinance"
+    "pages/addfinance/addfinance",
+    "pages/addpoll/addpoll"
   ],
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",

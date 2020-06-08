@@ -5,14 +5,43 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    roomRole:false
+  },
+  addpoll(){
+    wx.redirectTo({
+      url: '/pages/addpoll/addpoll'
+    })
+  },
+  getAllPoll(){
+    var that=this;
+    wx.request({
+      url: getApp().globalData.api + '/poll/getTheme',
+      header: {
+        'Authorization': getApp().globalData.tokenHead + ' '+getApp().globalData.token
+      },
+      method:'GET',
+      data: {
+        roomId: getApp().globalData.dormitoryInfo.id
+      },
+      success: (res) => {
+        let data = res.data;
+        if(data.code == '0000'){
+            console.log(data.data);
+          }
+        }
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    if(getApp().globalData.roomRole == 'leader'){
+      this.setData({
+        roomRole: true
+      })
+    }
+    this.getAllPoll();
   },
 
   /**

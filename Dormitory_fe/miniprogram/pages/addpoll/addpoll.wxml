@@ -1,0 +1,43 @@
+<!--pages/addpull/addpull.wxml-->
+<!--<text>pages/addpull/addpull.wxml</text>-->
+<view class="pollCenter">
+  <!--图标-->
+  <view class="pollIcon">
+    <van-icon name="bar-chart-o" size="120px" class="icon"/>
+  </view>
+  <view class="pullRoom">
+    <van-field
+      value="{{ roomId }}"
+      label="寝室ID"
+       required
+      border="{{ false }}"
+      bindinput="isRoomid"
+      tyep='number'
+      disabled
+    />
+  </view>
+  <view class="pollDes">
+    <van-field required label="投票主题" placeholder="请输入投票主题"  bindinput="gettheme" value="{{ theme }}"/>
+  </view>
+  <view class="choices">
+     <van-field
+    value="{{ onechoice }}"
+    placeholder="请输入选项一"
+    border="{{ false }}"
+    bindinput="getChoiceone"
+  />
+  <van-field
+    value="{{ twochoice }}"
+    placeholder="请输入选项二"
+    border="{{ false }}"
+    bindinput="getChoicetwo"
+  />
+  <van-field
+    value="{{ threechoice }}"
+    placeholder="请输入选项三"
+    border="{{ false }}"
+    bindinput="getChoicethree"
+  />
+  </view>
+  <van-button type="primary" size="large" bind:click="submit">创建投票</van-button>
+</view>
