@@ -60,7 +60,7 @@ Page({
       });
       console.log(this.data.allchoices);
       wx.request({
-        url:  getApp().globalData.api + '/poll/create',
+        url:  getApp().globalData.api + '/poll/insertTheme',
         header: {
           'Authorization': getApp().globalData.tokenHead + ' '+getApp().globalData.token,
           'content-type':'multipart/form-data; boundary=XXX'
