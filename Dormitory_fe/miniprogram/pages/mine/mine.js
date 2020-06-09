@@ -23,7 +23,6 @@ Page({
   // 切换底部导航
   onChange(event) {
     this.setData({ active: event.detail });
-    console.log('active', this.data.active);
     if(event.detail == 'home'){
       wx.redirectTo({
         url: '/pages/group/group'

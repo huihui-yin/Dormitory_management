@@ -31,7 +31,7 @@ Page({
   // 切换底部导航
   onChange(event) {
     this.setData({ active: event.detail });
-    console.log('active', this.data.active);
+    //console.log('active', this.data.active);
     if(event.detail == 'mine'){
           wx.redirectTo({
             url: '/pages/mine/mine'
@@ -46,12 +46,11 @@ Page({
   },
   // 获取寝室信息
   DorInfo(){
-    console.log('获取寝室信息');
+    //console.log('获取寝室信息');
     var that = this;
     that.setData({
       dorStatus: false
     })
-    //console.log('dorStatus1',that.data.dorStatus);
     // 此处获取宿舍信息如果为空说明未加入任何寝室，显示新增/搜索寝室；不为空显示寝室操作
        wx.request({
             url: getApp().globalData.api + '/room',
@@ -61,10 +60,9 @@ Page({
             method: "GET",
             success: function (res) {
               let data = res.data;
-              //console.log('请求宿舍时返回的data',data);
               // 有寝室将dorStatus改为true并把寝室数据存入全局数据
               if(data.data !== null){
-                console.log('有寝室！');
+                //console.log('有寝室！');
                 that.setData({
                   dorStatus: true,
                   dorId: data.data.room.id,
@@ -74,10 +72,9 @@ Page({
                 getApp().globalData.dorSta = that.data.dorStatus;
                 getApp().globalData.dormitoryInfo = data.data.room;
                 getApp().globalData.dormitoryChum = data.data.user;
-                console.log('getApp().globalData.dormitoryInfo',getApp().globalData.dormitoryInfo);
-                console.log('getApp().globalData.dormitoryChum',getApp().globalData.dormitoryChum);
+                //console.log('getApp().globalData.dormitoryInfo',getApp().globalData.dormitoryInfo);
+                //console.log('getApp().globalData.dormitoryChum',getApp().globalData.dormitoryChum);
               }
-             // console.log('dorStatus2',that.data.dorStatus);
             },
             fail: function (err) {
               console.log(err);
@@ -89,7 +86,6 @@ Page({
   // 搜索寝室号,用户点击键盘搜索按钮或回车
   onSearch (e) {
     var that = this;
-    console.log('用户搜索的寝室号：',e.detail);
     that.data.dorIdSearch = e.detail
     // 调用搜索寝室号接口
     wx.request({
@@ -100,7 +96,6 @@ Page({
       },
         success: (res) => {
           let data = res.data;
-          console.log('res.data', data);
           // 没有搜索结果,页面显示无数据
           if(data.data == null){
             this.setData({
@@ -121,13 +116,13 @@ Page({
           }
         },
         fail:  (err) => {
-          console.log('接口失败', err);
+          console.log(err);
         },
     });
   },
   // 取消搜索
   onCancel () {
-    console.log('用户取消搜索寝室号');
+    //console.log('用户取消搜索寝室号');
     this.setData({
       noRes:false,
       serchRes:false
@@ -149,8 +144,8 @@ Page({
               getApp().globalData.id = data.data.id;
               getApp().globalData.roomRole = data.data.roles[0].name;
               getApp().globalData.username=data.data.username;
-              console.log('全局id', getApp().globalData.id);
-              console.log('用户角色：', getApp().globalData.roomRole);
+              //console.log('全局id', getApp().globalData.id);
+              //console.log('用户角色：', getApp().globalData.roomRole);
             },
             fail: function (err) {
               console.log(err);
@@ -160,7 +155,6 @@ Page({
   // 用户点击加入按钮
   joinDor () {
     var that = this;
-    console.log('加入寝室！');
     // 调加入寝室接口
     wx.request({
       url:getApp().globalData.api + '/room/join',
@@ -176,10 +170,8 @@ Page({
         '\r\n--XXX' ,
         success: (res) => {
           let data = res.data;
-          console.log('res.data', data);
           // 登录成功
           if(data.code == '0000'){
-            console.log('加入寝室成功');
             wx.showToast({
               title: '加入成功',
               icon: 'success',
@@ -221,7 +213,7 @@ Page({
    */
   onShow: function () {
     if(getApp().globalData.page == '1'){
-      console.log('hh');
+     // console.log('hh');
       this.DorInfo();
    }
    getApp().globalData.page = 0;
