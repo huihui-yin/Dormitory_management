@@ -144,6 +144,7 @@ Page({
                     icon: 'success',
                     duration: 1000
                   })
+                  getApp().globalData.dorSta = false;
                   // 返回上一级
                   wx.navigateBack({
                     delta: 1
