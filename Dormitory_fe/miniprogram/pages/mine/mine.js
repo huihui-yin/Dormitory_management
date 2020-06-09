@@ -41,7 +41,6 @@ Page({
               method: "GET",
               success: function (res) {
                 let data = res.data.data;
-                console.log('用户本人信息：', data)
                 that.setData({
                   username: data.username,
                   tel: data.tel,
@@ -70,7 +69,6 @@ Page({
       this.setData({
         email: e.detail
       })
-      console.log("邮箱：",this.data.email);
     },
     // 确认修改
     Submit () {
@@ -130,7 +128,7 @@ Page({
               '\r\n--XXX' ,
               success: (res) => {
                 let data = res.data;
-                console.log('res.data', data);
+                //console.log('res.data', data);
                 if(data.code == '0000'){
                   wx.showToast({
                     title: '修改成功',
@@ -175,7 +173,6 @@ Page({
               '\r\n--XXX' ,
               success: (res) => {
                 let data = res.data;
-                console.log('res.data', data);
                 if(data.code == '0000'){
                   wx.showToast({
                     title: '修改成功',
@@ -210,6 +207,7 @@ Page({
         isleader:getApp().globalData.roomRole == "leader"?"是":"否"
       })
     }
+    console.log('dorSta',this.data.dorSta);
   },
 
   /**

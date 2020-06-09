@@ -21,7 +21,7 @@
         />
     </van-cell-group>
     <!-- 有寝室 -->
-    <view wx:if="dorSta">
+    <view wx:if="{{dorSta}}">
       <van-cell-group>
         <van-field
           value="{{room.roomName}}"

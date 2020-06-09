@@ -62,19 +62,19 @@ Page({
               let data = res.data;
               // 有寝室将dorStatus改为true并把寝室数据存入全局数据
               if(data.data !== null){
-                //console.log('有寝室！');
                 that.setData({
                   dorStatus: true,
                   dorId: data.data.room.id,
                   dorName: data.data.room.roomName,
                   dorRoomLocation: data.data.room.roomLocation,
                 })
-                getApp().globalData.dorSta = that.data.dorStatus;
+                getApp().globalData.dorSta = true;
                 getApp().globalData.dormitoryInfo = data.data.room;
                 getApp().globalData.dormitoryChum = data.data.user;
-                //console.log('getApp().globalData.dormitoryInfo',getApp().globalData.dormitoryInfo);
-                //console.log('getApp().globalData.dormitoryChum',getApp().globalData.dormitoryChum);
+                console.log('getApp().globalData.dormitoryInfo',getApp().globalData.dormitoryInfo);
+                console.log('getApp().globalData.dormitoryChum',getApp().globalData.dormitoryChum);
               }
+              console.log('getApp().globalData.dorSta',getApp().globalData.dorSta);
             },
             fail: function (err) {
               console.log(err);
@@ -142,7 +142,7 @@ Page({
             success: function (res) {
               let data = res.data;
               getApp().globalData.id = data.data.id;
-              getApp().globalData.roomRole = data.data.roles[0].name;
+              if(that.data.dorStatus){getApp().globalData.roomRole = data.data.roles[0].name;}
               getApp().globalData.username=data.data.username;
               //console.log('全局id', getApp().globalData.id);
               //console.log('用户角色：', getApp().globalData.roomRole);
