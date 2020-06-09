@@ -58,15 +58,16 @@ page{
   font-family: PingFangSC-regular;
 }
 .secondblock{
-  margin-top: 10rpx;
+  /* margin-top: 5rpx; */
   margin-left: 4%;
   margin-right: 4%;
-  padding-bottom: 20rpx;
+  padding-bottom: 40rpx;
 }
 .content{
-  font-size: 29rpx;
+  /* font-size: 29rpx; */
   color: #101010;
   word-break: break-all;
+  margin-left: 30rpx;
 }
 .delete{
   width: 65px;

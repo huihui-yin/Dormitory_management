@@ -3,79 +3,88 @@
 <view class="add">
   <van-button wx:if="{{roomRole}}" icon="add-o" type="primary" color="#1989fa" class="newbtn" bind:click="addfinance">新增收支</van-button>
 </view>
-<!--图标的实现,测试阶段-->
-<!--<view class="box">
-  <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
-</view>-->
-<!--查询-->
-<view class="search">
-     <van-search disabled value="{{ fromDate }}" placeholder="开始时间" bind:focus="fromDisplay" class="fromSearch" />
-     <!--时间选择器-->
-     <van-popup show="{{ fromshow }}" bind:close="fromClose" position="bottom" custom-style="height: 40%;">
-       <van-datetime-picker
-       title="开始时间选择"
-        type="date"
-        min-date="{{ minDate }}"
-        bind:cancel="fromClose" bind:confirm="fromConfirm"
-        class="dateChose"
-      />
-     </van-popup>
-     <van-search disabled value="{{ toDate }}" placeholder="结束时间"  bind:focus="toDisplay" class="toSearch" />
-     <!--时间选择器-->
-     <van-popup show="{{ toshow }}" bind:close="toClose" position="bottom" custom-style="height: 40%;">
-       <van-datetime-picker
-       title="结束时间选择"
-        type="date"
-        min-date="{{ minDate }}"
-        bind:cancel="toClose" bind:confirm="toConfirm"
-        class="dateChose"
-      />
-     </van-popup>
-     <van-button size="small" type="info" class="btnSearch" bind:click="dateSearch" >查询</van-button>
-</view>
-<!--查询全部数据-->
-<view class="bottom">
-      <view class="balance"><text>寝室余额:</text><text class="balancemoney">{{balance}}</text></view>
-      <van-button round type="info" class="searchall" bind:click="searchAll">查询全部</van-button>
-</view>
-<!-- echarts -->
-<!-- <view class="content-echarts">
-    <ec-canvas id="mychart-line" canvas-id="mychart-line" ec="{{ec}}"></ec-canvas>
-  </view> -->
-<!-- 收支信息 -->
-<view class="financeCen" wx:if="{{isfinance}}">
-   <!--室长看到的收支信息-->
-   <view  wx:if="{{roomRole}}">
-      <van-collapse value="{{ activeNames }}" bind:change="onChange">
-        <van-collapse-item wx:for="{{allfinance}}" wx:key="key" wx:ket="{{item.id}}" title="{{item.classify}}" name="{{item.id}}" value="收支{{item.money}}">
-           <!--下滑的内容-->
-           <van-cell-group>
-              <van-cell title="{{item.moneyReason}}" value="收支{{item.money}}" />
-              <van-cell title="收支时间" value="{{item.modifyTime}}" />
-            </van-cell-group>
-            <view class="btn">
-                <van-button size="small" type="danger" calss="delete" bindtap="deleteFinance" data-index='{{item.id}}'>删除</van-button>
-            </view>
-        </van-collapse-item>
-      </van-collapse>
-   </view>
-   <!--成员看到的收支信息-->
-   <view wx:if="{{roomRole==false}}">
-      <van-collapse value="{{ activeNames }}" bind:change="onChange">
-        <van-collapse-item wx:for="{{allfinance}}" wx:key="key" wx:ket="{{item.id}}" title="{{item.classify}}" name="{{item.id}}" value="收支{{item.money}}">
-           <van-cell-group>
-              <van-cell title="{{item.moneyReason}}" value="收支{{item.money}}" />
-              <van-cell title="收支时间" value="{{item.modifyTime}}" />
-            </van-cell-group>
-        </van-collapse-item>
-      </van-collapse>
-   </view>
-</view>
-<view wx:else>
-   <view class="noRes">
-      <view class="noResCon">
-        <image class="noResImg" src="../../images/noRes1.png" alt="" ></image>
-        <view class="noword colortext2">暂无收支</view>
+
+<van-tabs color="#3f9dfb" active="{{ activeTab }}" bind:change="tabChange">
+  <van-tab title="收支明细">
+    <view class="search">
+        <van-search disabled value="{{ fromDate }}" placeholder="开始时间" bindtap="fromDisplay" class="fromSearch" />
+        <!--时间选择器-->
+        <van-popup show="{{ fromshow }}" bind:close="fromClose" position="bottom" custom-style="height: 40%;">
+          <van-datetime-picker
+          title="开始时间选择"
+            type="date"
+            min-date="{{ minDate }}"
+            bind:cancel="fromClose" bind:confirm="fromConfirm"
+            class="dateChose"
+          />
+        </van-popup>
+        <van-search disabled value="{{ toDate }}" placeholder="结束时间"  bindtap="toDisplay" class="toSearch" />
+        <!--时间选择器-->
+        <van-popup show="{{ toshow }}" bind:close="toClose" position="bottom" custom-style="height: 40%;">
+          <van-datetime-picker
+          title="结束时间选择"
+            type="date"
+            min-date="{{ minDate }}"
+            bind:cancel="toClose" bind:confirm="toConfirm"
+            class="dateChose"
+          />
+        </van-popup>
+        <van-button size="small" type="info" class="btnSearch" bind:click="dateSearch" >查询</van-button>
+    </view>
+    <!--查询全部数据-->
+    <view class="bottom">
+          <view class="balance"><text>寝室余额:</text><text class="balancemoney">{{balance}}</text></view>
+          <van-button round type="info" class="searchall" bind:click="searchAll">查询全部</van-button>
+    </view>
+    <!-- 收支信息 -->
+    <view class="financeCen" wx:if="{{isfinance}}">
+      <!--室长看到的收支信息-->
+      <view  wx:if="{{roomRole}}">
+          <van-collapse value="{{ activeNames }}" bind:change="onChange">
+            <van-collapse-item wx:for="{{allfinance}}" wx:key="id" wx:ket="{{item.id}}" title="{{item.classify}}" name="{{item.id}}" value="收支{{item.money}}">
+              <!--下滑的内容-->
+              <van-cell-group>
+                  <van-cell title="{{item.moneyReason}}" value="收支{{item.money}}" />
+                  <van-cell title="收支时间" value="{{item.modifyTime}}" />
+                </van-cell-group>
+                <view class="btn">
+                    <van-button size="small" type="danger" calss="delete" bindtap="deleteFinance" data-index='{{item.id}}'>删除</van-button>
+                </view>
+            </van-collapse-item>
+          </van-collapse>
+      </view>
+      <!--成员看到的收支信息-->
+      <view wx:if="{{roomRole==false}}">
+          <van-collapse value="{{ activeNames }}" bind:change="onChange">
+            <van-collapse-item wx:for="{{allfinance}}" wx:key="key" wx:ket="{{item.id}}" title="{{item.classify}}" name="{{item.id}}" value="收支{{item.money}}">
+              <van-cell-group>
+                  <van-cell title="{{item.moneyReason}}" value="收支{{item.money}}" />
+                  <van-cell title="收支时间" value="{{item.modifyTime}}" />
+                </van-cell-group>
+            </van-collapse-item>
+          </van-collapse>
       </view>
     </view>
-</view>
+    <view wx:else>
+      <view class="noRes">
+          <view class="noResCon">
+            <image class="noResImg" src="../../images/noRes1.png" alt="" ></image>
+            <view class="noword colortext2">暂无收支</view>
+          </view>
+        </view>
+    </view>
+  </van-tab>
+  <van-tab title="支出统计">
+    <!-- echarts -->
+    <view wx:if="{{activeTab==1}}">
+      <view class="content-echarts">
+          <ec-canvas id="mychart-line" canvas-id="mychart-line" ec="{{ec}}"></ec-canvas>
+      </view>
+      <view class="tableTitle">寝室最近七天支出情况</view>
+      <view class="container">
+        <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec2 }}"></ec-canvas>
+      </view>
+      <view class="tableTitle">寝室一个月支出分类</view>
+    </view>
+  </van-tab>
+</van-tabs>
