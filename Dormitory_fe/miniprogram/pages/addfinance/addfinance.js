@@ -11,13 +11,33 @@ Page({
     money:"",
     areaList:{
       province_list: {
-        110000: '寝室电费',
-        120000: '寝室网费',
-        130000:'寝室聚餐',
-        14000:'寝室外出'
+        120000: '寝室外出',
+        130000: '寝室网费',
+        140000:'寝室聚餐',
+        15000:'寝室电费',
+        16000:'寝室杂物费',
+        16000:'室费',
       }
     },
+    // 0：收入，1：支出
+    moneyStatus: 1,
+    radioSelects:[
+      {value: 0, name: '收入'},
+      {value: 1, name: '支出', checked: 'true'},
+    ],
     hiddenSelect: false
+  },
+  // 选择支出/收入
+  radioChange(e) {
+    console.log('radio发生change事件，携带value值为：', e.detail.value)
+    const items = this.data.radioSelects
+    for (let i = 0, len = items.length; i < len; ++i) {
+      items[i].checked = items[i].value === e.detail.value
+    }
+    this.setData({
+      moneyStatus: e.detail.value,
+    });
+    console.log("moneyStatus:", this.data.moneyStatus);
   },
   selectDisply () {
     //console.log('控制选择保修项目');
@@ -46,6 +66,7 @@ Page({
       moneyReson: e.detail
     })
   },
+  // 收支金额
   isMoney: function (e)
   {
     this.setData({
@@ -88,6 +109,11 @@ Page({
       })
     }
     else{
+      if(this.data.moneyStatus == 1){
+        this.setData({
+          money: -this.data.money
+        })
+      }
       wx.request({
         url: getApp().globalData.api + '/finance/insert',
         header: {

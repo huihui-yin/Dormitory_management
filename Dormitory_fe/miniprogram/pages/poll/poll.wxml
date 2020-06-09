@@ -8,7 +8,8 @@
      <van-collapse value="{{ activeNames }}" bind:change="onChange">
        <van-collapse-item title="{{item.theme}}" name="{{item.theme}}" wx:for="{{allnewpoll}}" value="{{ispoll}}">
               <van-radio-group value="{{choice }}" bind:change="radioChange" class="radioGroup">
-                 <van-cell wx:for="{{item.choices}}" wx:key="key" wx:ket="item.voteId">
+                 <!-- <van-cell wx:for="{{item.choices}}" wx:key="key" wx:ket="item.voteId"> -->
+                  <van-cell wx:for="{{item.choices}}" wx:key="id">
                     <van-radio name="{{item.voteId}}">{{item.choice}}</van-radio>
                   </van-cell>
               </van-radio-group>

@@ -255,7 +255,7 @@ Page({
     else if(index == 1){
       wx.showModal({
         title: '提示',
-        content: '是否移除该寝室成员！',
+        content: '确认移除该寝室成员？',
         success (res) {
           if (res.confirm) {
             // 调移除室员接口

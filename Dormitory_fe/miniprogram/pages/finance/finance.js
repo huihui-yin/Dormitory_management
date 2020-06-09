@@ -1,62 +1,299 @@
 // pages/finance/finance.js
 import * as echarts from '../ec-canvas/echarts';
-// function initChart(canvas,width,height){
-//   const chart = echarts.init(canvas,null,{
-//     width:width,
-//     height:height
-//   })
-//   canvas.setChart(chart)
-//   var option = {
-//     color: ['#FFCC00'],
-//     title: {
-//       text: '本周销量统计图'
-//     },
-//     tooltip: {},
-//     legend: {
-//       data: ['销量']
-//     },
-//     xAxis: {
-//       data: ["周一", "周二", "周三", "周四", "周五", "周六",'周日']
-//     },
-//     yAxis: {},
-//     series: [{
-//       name: '销量',
-//       type: 'bar',
-//       data: [5, 20, 36, 10, 13, 20,38]
-//     }]
-//   };
-//   chart.setOption(option)
-//   return chart
-// }
-/*图表的相关配置
-let chart = null;
-function initChart(canvas, width, height) {
-  chart = echarts.init(canvas, null, {
-    width: width,
-    height: height
-  });
-  canvas.setChart(chart);
-
-  var option = {
-    title: {
-      text: 'ECharts 入门示例'
+// 饼状
+function initChart(canvas,width,height){
+  console.log("initChart");
+  // 设置时间
+  let dataNow = new Date();
+  let month = dataNow.getMonth()+1;
+  let nowTime = dataNow.getFullYear() + "/" + month + "/" + dataNow.getDate();
+  let oldTime = dataNow.getFullYear() + "/" + dataNow.getMonth() + "/" + dataNow.getDate();
+  let dataList =[
+    {value:0, name:'寝室外出'},
+    {value:0, name:'寝室杂物费'},
+    {value:0, name:'寝室电费'},
+    {value:0, name:'寝室网费'},
+    {value:0, name:'寝室聚餐'}
+]
+  // 查询最近半年
+  console.log("一个月前:", oldTime);
+  console.log("现在:", nowTime);
+  wx.request({
+      url: getApp().globalData.api + '/finance/time',
+      header: {
+        'Authorization': getApp().globalData.tokenHead + ' '+getApp().globalData.token
+      },
+      method:'GET',
+      data: {
+        'pageNo': "1",
+        'pageSize': "100",
+        'from':oldTime,
+        'to':nowTime
+      },
+      success: (res) => {
+        let data = res.data;
+        if(data.code == '0000'){
+          console.log('最近一个月支出情况',data);
+          let length = data.data.records.length;
+          let records = data.data.records;
+          if(length!=0)
+          {
+            records.forEach((item, index) => {
+              if(item.money < 0){
+                if(item.classify == "寝室外出"){
+                  dataList[0].value += -item.money;
+                }
+                else if(item.classify == "寝室杂物费"){
+                  dataList[1].value += -item.money;
+                }
+                else if(item.classify == "寝室电费"){
+                  dataList[2].value += -item.money;
+                }
+                else if(item.classify == "寝室网费"){
+                  dataList[3].value += -item.money;
+                }
+                else if(item.classify == "寝室聚餐"){
+                  dataList[4].value += -item.money;
+                }
+              }
+            })
+          }
+          console.log(' dataList', dataList);
+        }
+      },
+      fail: function (err) {
+        console.log(err);
+      }
+  })
+  setTimeout(() => {
+    // 统计图
+    const chart = echarts.init(canvas,null,{
+      width:width,
+      height:height
+    })
+    canvas.setChart(chart)
+    var option = {
+      color:['#0462c0','#0576e7','#3f9dfb', "#65b1fc",'#8cc4fd'],
+      title: {}, 
+      tooltip: {},
+      series: [{
+        name: '支出',
+        type: 'pie',
+        radius: '55%',
+        data:dataList
+      }]
+    };
+    console.log(' option.series[0].data', option.series[0].data);
+    chart.setOption(option)
+    return chart
+  }, 1000)
+};
+// 折线
+function initChart3(canvas,width,height){
+  console.log("initChart");
+  // 设置时间
+  // let dataNow = new Date();
+  // let month = dataNow.getMonth()+1;
+  // let nowTime = dataNow.getFullYear() + "/" + month + "/" + dataNow.getDate();
+  // let oldTime = dataNow.getFullYear() + "/" + dataNow.getMonth() + "/" + dataNow.getDate();
+  let dataList = [0, 0, 0, 0, 0]
+  // 查询最近半年
+  // console.log("一个月前:", oldTime);
+  // console.log("现在:", nowTime);
+  // wx.request({
+  //     url: getApp().globalData.api + '/finance/time',
+  //     header: {
+  //       'Authorization': getApp().globalData.tokenHead + ' '+getApp().globalData.token
+  //     },
+  //     method:'GET',
+  //     data: {
+  //       'pageNo': "1",
+  //       'pageSize': "100",
+  //       'from':oldTime,
+  //       'to':nowTime
+  //     },
+  //     success: (res) => {
+  //       let data = res.data;
+  //       if(data.code == '0000'){
+  //         console.log('最近一个月支出情况',data);
+  //         let length = data.data.records.length;
+  //         let records = data.data.records;
+  //         if(length!=0)
+  //         {
+  //           records.forEach((item, index) => {
+  //             if(item.money < 0){
+  //               if(item.classify == "寝室外出"){
+  //                 dataList[0] += -item.money;
+  //               }
+  //               else if(item.classify == "寝室杂物费"){
+  //                 dataList[1] += -item.money;
+  //               }
+  //               else if(item.classify == "寝室电费"){
+  //                 dataList[2] += -item.money;
+  //               }
+  //               else if(item.classify == "寝室网费"){
+  //                 dataList[3] += -item.money;
+  //               }
+  //               else if(item.classify == "寝室聚餐"){
+  //                 dataList[4] += -item.money;
+  //               }
+  //             }
+              
+  //           })
+  //         }
+  //         console.log(' dataList', dataList);
+  //       }
+  //     },
+  //     fail: function (err) {
+  //       console.log(err);
+  //     }
+  // })
+  // setTimeout(() => {
+    // 统计图
+    const chart = echarts.init(canvas, null, {
+      width:width,
+      height: height
+    });
+    canvas.setChart(chart);
+  
+    var option = {
+    //定义图标的标题和颜色
+      title: {
+        // text: '今日访问量',
+        // left: 'center'
+      },
+      color: ["#37A2DA"],
+      //定义你图标的线的类型种类
+      legend: {
+      data: ['money'],
+      top: 50,
+      left: 'center',
+      backgroundColor: '#37A2DA',
+      z: 100
+      },
+      grid: {
+      containLabel: true
     },
-    tooltip: {},
-    series: [{
-      name: '销量',
-      type: 'pie',
-      radius:'50%',
-      data: [{value:235, name:'视频广告'},
-      {value:274, name:'联盟广告'},
-      {value:310, name:'邮件营销'},
-      {value:335, name:'直接访问'},
-      {value:400, name:'搜索引擎'}]
-    }]
-  };
-
-  chart.setOption(option);
-  return chart;
-}*/
+    //当你选中数据时的提示框
+      tooltip: {
+        show: true,
+        trigger: 'axis'
+      },
+      //	x轴
+      xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['1', '2', '3', '4', '5', '6', '7'],//x轴数据
+        // x轴的字体样式
+        axisLabel: {
+          show: true,
+          textStyle: {
+            color: '#000',
+            fontSize: '14',
+          }
+        },
+        // 控制网格线是否显示
+        splitLine: {
+          show: true,
+          //  改变轴线颜色
+          lineStyle: {
+            // 使用深浅的间隔色
+            color: ['#aaaaaa']
+          }
+        },
+        // x轴的颜色和宽度
+        axisLine: {
+          lineStyle: {
+            color: '#000',
+            width: 1,   //这里是坐标轴的宽度,可以去掉
+          }
+        }
+        // show: false //是否显示坐标
+      },
+      yAxis: {
+        x: 'center',
+        type: 'value',
+        //网格线
+        splitLine: {
+          lineStyle: {
+            type: 'dashed'
+          }
+        },
+        // show: false
+      },
+      series: [{
+        name: 'A',
+        type: 'line',
+        smooth: true,
+        data: [15, 2, 30, 16, 10, 17, 15]
+      }]
+    };
+    chart.setOption(option);
+    return chart;
+  // }, 1000)
+}
+// 柱形
+function initChart2(canvas,width,height){
+  console.log("initChart");
+  let dataList = [];
+  let dateList = [];
+  // 查询最近七天
+  wx.request({
+      url: getApp().globalData.api + '/finance/week',
+      header: {
+        'Authorization': getApp().globalData.tokenHead + ' '+getApp().globalData.token
+      },
+      method:'GET',
+      success: (res) => {
+        let data = res.data;
+        console.log('最近七天返回data',data);
+        if(data.code == '0000'){
+          console.log('最近一个月支出情况',data);
+          let records = data.data;
+          records.forEach((item, index) => {
+            dataList.push(item.money);
+            dateList.push(item.date);
+          })
+          // console.log(' dataList', dataList);
+          // console.log(' dateList', dateList);
+        }
+      },
+      fail: function (err) {
+        console.log(err);
+      }
+  })
+  setTimeout(() => {
+    // 统计图
+    const chart = echarts.init(canvas,null,{
+      width:width,
+      height:height
+    })
+    canvas.setChart(chart)
+    var option = {
+      color: ['#3f9dfb'],
+      title: {
+        // text: '最近一个月寝室支出情况统计'
+      }, 
+      tooltip: {},
+      legend: {
+        data: ['支出']
+      },
+      xAxis: {
+        data: dateList
+      },
+      yAxis: {},
+      series: [{
+        name: '销量',
+        type: 'bar',
+        data: dataList
+      }]
+    };
+    // console.log(' option.series[0].data', option.series[0].data);
+    // console.log(' option.xAxis.data', option.xAxis.data);
+    chart.setOption(option)
+    return chart
+  }, 500)
+};
 Page({
 
   /**
@@ -74,8 +311,19 @@ Page({
     fromshow:false,
     toshow:false,
     minDate:new Date(2018,8,1).getTime(),
-    // ec:{onInit:initChart}
+    ec:{onInit:initChart2},
+    ec2:{onInit:initChart},
+    // tab栏
+    activeTab: 0,
   },
+  // 切换tab
+  tabChange(event) {
+    console.log(`切换到标签 ${event.detail.name}`)
+    this.setData({
+      activeTab:event.detail.name
+    })
+  },
+
   toDisplay() {
     this.setData({ toshow: true });
   },

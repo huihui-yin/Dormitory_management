@@ -64,17 +64,24 @@
 }
 /* echart */
 .content-echarts{
-  position: absolute;
+  /* position: absolute;
   top: 25%;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 0; */
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
 }
 ec-canvas{
   width:100%;
-  height: 600rpx;
+  height: 550rpx;
   background: #fff;
+}
+/* 统计图标题 */
+.tableTitle{
+  /* width: 100%; */
+  text-align: center;
+  color: #555;
+  font-size: 13px;
 }

@@ -4,8 +4,17 @@
   <van-icon name="gold-coin-o" size="120px" />
 </view>
 <view class="addmian">
-   <view class="roomId">
-     <van-field
+   <view class="finSat">
+      <text class="finSatText"><text style="color:red">*</text>收支类型</text>
+      <radio-group bindchange="radioChange" class="radio">
+        <label class="weui-cell weui-check__label radione" wx:for="{{radioSelects}}" wx:key="value">
+          <view class="weui-cell__hd">
+            <radio color="#3f9dfb" value="{{item.value}}" checked="true"/>
+          </view>
+          <view class="weui-cell__bd">{{item.name}}</view>
+        </label>
+      </radio-group>
+     <!-- <van-field
         value="{{ roomId }}"
         border="{{ false }}"
         label="寝室ID"
@@ -13,7 +22,7 @@
         border="{{ false }}"
         bindinput="isRoomid"
         tyep='number'
-    />
+    /> -->
    </view>
    <view class="roomClassify">
     <van-field value="{{ classify }}" required
@@ -22,13 +31,11 @@
     placeholder="请选择分类"
     bindtap="selectDisply" />
    </view>
+   <view class="roomMoney">
+      <van-field type="number" border="{{ false }}" placeholder="请输入金额大小" label="收支金额" required bindinput="isMoney" />
+   </view>
    <view class="roomReason">
      <van-field required label="收支原因" placeholder="请输入原因" bindinput="getReson" />
-   </view>
-   <view class="roomMoney">
-      <van-field border="{{ false }}" placeholder="请输入金额大小" label="收支金额" 
-        required border="{{ false }}" tyep='number' bindinput="isMoney" 
-    />
    </view>
    <button bindtap="submit" class='btn' type='primary' lang="zh_CN" >提交收支</button>
 </view>

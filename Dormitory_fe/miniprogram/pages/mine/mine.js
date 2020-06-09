@@ -13,24 +13,16 @@ Page({
     email: '',
     // 修改后的用户名
     usernew: '',
-    // birthday: '',
-    // 日期弹出框
-    // show: false,
-    currentDate: new Date().getTime() + 1,
-    minDate: new Date().getTime(),
-    formatter(type, value) {
-      if (type === 'year') {
-        return `${value}年`;
-      } else if (type === 'month') {
-        return `${value}月`;
-      }
-      return value;
-    },
+    // 是否有寝室
+    dorSta: false,
+    // 寝室信息
+    room: {},
+    // 是否室长
+    isleader: '',
   },
   // 切换底部导航
   onChange(event) {
     this.setData({ active: event.detail });
-    console.log('active', this.data.active);
     if(event.detail == 'home'){
       wx.redirectTo({
         url: '/pages/group/group'
@@ -80,40 +72,9 @@ Page({
       })
       console.log("邮箱：",this.data.email);
     },
-    // 日期弹窗
-    // showPopup() {
-    //   console.log('111')
-    //   this.setData({ show: true });
-    // },
-  
-    // onClose() {
-    //   this.setData({ show: false });
-    // },
-    // 日期格式转换函数
-    formatDate (now) {     
-      var   year=now.getFullYear();     
-      var   month=now.getMonth()+1;     
-      var   date=now.getDate();     
-      var   hour=now.getHours();     
-      var   minute=now.getMinutes();     
-      var   second=now.getSeconds();     
-      return   year+"-"+month+"-"+date+"   "+hour+":"+minute+":"+second;     
-    },
-    // 选择日期
-    // onInput(event) {
-    //   console.log('event', event);
-    //   var d = this.formatDate(event.detail)
-    //   this.setData({
-    //     currentDate: d,
-    //   });
-    //   console.log('currentDate', this.data.currentDate);
-    // },
     // 确认修改
     Submit () {
       var that = this;
-      //console.log("username: ",that.data.username);
-      //console.log("usernew: ",that.data.usernew);
-      //console.log("tel: ", that.data.tel);
       var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
       if (that.data.username == '') {
         wx.showModal({
@@ -242,6 +203,13 @@ Page({
    */
   onLoad: function (options) {
     this.findSelf();
+    if(getApp().globalData.dorSta){
+      this.setData({
+        dorSta:getApp().globalData.dorSta,
+        room: getApp().globalData.dormitoryInfo,
+        isleader:getApp().globalData.roomRole == "leader"?"是":"否"
+      })
+    }
   },
 
   /**
