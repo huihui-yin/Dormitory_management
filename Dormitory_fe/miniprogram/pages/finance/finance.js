@@ -56,7 +56,6 @@ function initChart(canvas,width,height){
                   dataList[4].value += -item.money;
                 }
               }
-              
             })
           }
           console.log(' dataList', dataList);
@@ -74,22 +73,10 @@ function initChart(canvas,width,height){
     })
     canvas.setChart(chart)
     var option = {
-      color:['#023b73','#0576e7','#3f9dfb', "#65b1fc",'#ecf5ff'],
-      title: {
-        // text: '最近一个月寝室支出情况统计'
-      }, 
+      color:['#0462c0','#0576e7','#3f9dfb', "#65b1fc",'#8cc4fd'],
+      title: {}, 
       tooltip: {},
-      // legend: {
-      //   data: ['支出']
-      // },
-      // xAxis: {
-      //   data: ["外出", "杂物费", "电费", "网费", "聚餐"]
-      // },
-      // yAxis: {},
       series: [{
-        // name: '支出',
-        // type: 'bar',
-        // data: dataList
         name: '支出',
         type: 'pie',
         radius: '55%',
@@ -248,64 +235,34 @@ function initChart3(canvas,width,height){
 // 柱形
 function initChart2(canvas,width,height){
   console.log("initChart");
-  // 设置时间
-  // let dataNow = new Date();
-  // let month = dataNow.getMonth()+1;
-  // let nowTime = dataNow.getFullYear() + "/" + month + "/" + dataNow.getDate();
-  // let oldTime = dataNow.getFullYear() + "/" + dataNow.getMonth() + "/" + dataNow.getDate();
-  let dataList = [15, 2, 30, 16, 10, 17, 15]
-  // 查询最近半年
-  // console.log("一个月前:", oldTime);
-  // console.log("现在:", nowTime);
-  // wx.request({
-  //     url: getApp().globalData.api + '/finance/time',
-  //     header: {
-  //       'Authorization': getApp().globalData.tokenHead + ' '+getApp().globalData.token
-  //     },
-  //     method:'GET',
-  //     data: {
-  //       'pageNo': "1",
-  //       'pageSize': "100",
-  //       'from':oldTime,
-  //       'to':nowTime
-  //     },
-  //     success: (res) => {
-  //       let data = res.data;
-  //       if(data.code == '0000'){
-  //         console.log('最近一个月支出情况',data);
-  //         let length = data.data.records.length;
-  //         let records = data.data.records;
-  //         if(length!=0)
-  //         {
-  //           records.forEach((item, index) => {
-  //             if(item.money < 0){
-  //               if(item.classify == "寝室外出"){
-  //                 dataList[0] += -item.money;
-  //               }
-  //               else if(item.classify == "寝室杂物费"){
-  //                 dataList[1] += -item.money;
-  //               }
-  //               else if(item.classify == "寝室电费"){
-  //                 dataList[2] += -item.money;
-  //               }
-  //               else if(item.classify == "寝室网费"){
-  //                 dataList[3] += -item.money;
-  //               }
-  //               else if(item.classify == "寝室聚餐"){
-  //                 dataList[4] += -item.money;
-  //               }
-  //             }
-              
-  //           })
-  //         }
-  //         console.log(' dataList', dataList);
-  //       }
-  //     },
-  //     fail: function (err) {
-  //       console.log(err);
-  //     }
-  // })
-  // setTimeout(() => {
+  let dataList = [];
+  let dateList = [];
+  // 查询最近七天
+  wx.request({
+      url: getApp().globalData.api + '/finance/week',
+      header: {
+        'Authorization': getApp().globalData.tokenHead + ' '+getApp().globalData.token
+      },
+      method:'GET',
+      success: (res) => {
+        let data = res.data;
+        console.log('最近七天返回data',data);
+        if(data.code == '0000'){
+          console.log('最近一个月支出情况',data);
+          let records = data.data;
+          records.forEach((item, index) => {
+            dataList.push(item.money);
+            dateList.push(item.date);
+          })
+          // console.log(' dataList', dataList);
+          // console.log(' dateList', dateList);
+        }
+      },
+      fail: function (err) {
+        console.log(err);
+      }
+  })
+  setTimeout(() => {
     // 统计图
     const chart = echarts.init(canvas,null,{
       width:width,
@@ -322,7 +279,7 @@ function initChart2(canvas,width,height){
         data: ['支出']
       },
       xAxis: {
-        data: ["1", "2", "3", "4", "5", "6", "7"]
+        data: dateList
       },
       yAxis: {},
       series: [{
@@ -331,10 +288,11 @@ function initChart2(canvas,width,height){
         data: dataList
       }]
     };
-    console.log(' option.series[0].data', option.series[0].data);
+    // console.log(' option.series[0].data', option.series[0].data);
+    // console.log(' option.xAxis.data', option.xAxis.data);
     chart.setOption(option)
     return chart
-  // }, 1000)
+  }, 500)
 };
 Page({
 

@@ -4,7 +4,7 @@
   <view class="maintanIcon">
     <van-icon name="phone-o" size="120px" class="icon"/>
   </view>
-  <view class="maintanRoom">
+  <!-- <view class="maintanRoom">
     <van-field
       value="{{ roomId }}"
       label="寝室ID"
@@ -14,7 +14,7 @@
       bindinput="isRoomid"
       tyep='number'
     />
-  </view>
+  </view> -->
   <view class="maintanItem">
     <van-field disabled value="{{ item }}" required label="报修项目" placeholder="请选择项目" bindtap="selectDisply" />
   </view>

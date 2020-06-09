@@ -71,6 +71,7 @@ Page({
                   dorName: data.data.room.roomName,
                   dorRoomLocation: data.data.room.roomLocation,
                 })
+                getApp().globalData.dorSta = that.data.dorStatus;
                 getApp().globalData.dormitoryInfo = data.data.room;
                 getApp().globalData.dormitoryChum = data.data.user;
                 console.log('getApp().globalData.dormitoryInfo',getApp().globalData.dormitoryInfo);
@@ -85,7 +86,7 @@ Page({
       //console.log('dorStatus3',that.data.dorStatus);
   },
   // 搜索寝室号
-  // 用户点击键盘搜索按钮或回车
+  // 搜索寝室号,用户点击键盘搜索按钮或回车
   onSearch (e) {
     var that = this;
     console.log('用户搜索的寝室号：',e.detail);
@@ -147,6 +148,7 @@ Page({
               let data = res.data;
               getApp().globalData.id = data.data.id;
               getApp().globalData.roomRole = data.data.roles[0].name;
+              getApp().globalData.username=data.data.username;
               console.log('全局id', getApp().globalData.id);
               console.log('用户角色：', getApp().globalData.roomRole);
             },

@@ -1,1 +1,24 @@
 /* pages/poll/poll.wxss */
+.btn{
+  display: flex;
+  justify-content: flex-end;
+  background-color:#fff !important;
+  margin: 20rpx 25rpx !important;
+}
+.van-radio{
+  width:50%;
+}
+.van-cell{
+  display: flex;
+}
+.add{
+  display: flex;
+  justify-content: flex-end;
+}
+.tag{
+  display: flex;
+  justify-content: flex-end;
+}
+.van-tag,.van-button--small{
+  margin-right: 5px;
+}

@@ -60,7 +60,7 @@ Page({
       });
       console.log(this.data.allchoices);
       wx.request({
-        url:  getApp().globalData.api + '/poll/create',
+        url:  getApp().globalData.api + '/poll/insertTheme',
         header: {
           'Authorization': getApp().globalData.tokenHead + ' '+getApp().globalData.token,
           'content-type':'multipart/form-data; boundary=XXX'
@@ -83,12 +83,6 @@ Page({
           let data = res.data;
           console.log('res.data', data);
           if(data.code == '0000'){
-             wx.showModal({
-              showCancel: false,
-              content: '创建成功',
-              showCancel: false,
-              success: function (res) { }
-            })
             wx.redirectTo({
               url: '/pages/poll/poll'
             })

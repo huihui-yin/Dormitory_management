@@ -5,7 +5,7 @@
   <view class="pollIcon">
     <van-icon name="bar-chart-o" size="120px" class="icon"/>
   </view>
-  <view class="pullRoom">
+  <!-- <view class="pullRoom">
     <van-field
       value="{{ roomId }}"
       label="寝室ID"
@@ -15,7 +15,7 @@
       tyep='number'
       disabled
     />
-  </view>
+  </view> -->
   <view class="pollDes">
     <van-field required label="投票主题" placeholder="请输入投票主题"  bindinput="gettheme" value="{{ theme }}"/>
   </view>
@@ -39,5 +39,6 @@
     bindinput="getChoicethree"
   />
   </view>
-  <van-button type="primary" size="large" bind:click="submit">创建投票</van-button>
+  <!-- <van-button type="primary" size="large" bind:click="submit">创建投票</van-button> -->
+  <button bindtap="submit" class='btn' type='primary' lang="zh_CN" >发布</button>
 </view>

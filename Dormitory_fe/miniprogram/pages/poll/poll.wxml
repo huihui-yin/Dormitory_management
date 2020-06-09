@@ -1,8 +1,26 @@
 <!--pages/poll/poll.wxml-->
 <view class="add">
-<button bindtap="addpoll" class='btn'  type='primary' lang="zh_CN" wx:if="{{roomRole}}">新增投票</button>
+<van-button wx:if="{{roomRole}}" icon="add-o" type="primary" color="#1989fa" class="newbtn" bind:click="addpoll">新增投票</van-button>
 </view>
 <view class="pollCenter">
-   <!--室长看到的投票界面-->
-   <view class="leaderPoll"></view>
+   <!--看到的未投票投票界面-->
+   <view class="leaderPoll">
+     <van-collapse value="{{ activeNames }}" bind:change="onChange">
+       <van-collapse-item title="{{item.theme}}" name="{{item.theme}}" wx:for="{{allnewpoll}}" value="{{ispoll}}">
+              <van-radio-group value="{{choice }}" bind:change="radioChange" class="radioGroup">
+                 <!-- <van-cell wx:for="{{item.choices}}" wx:key="key" wx:ket="item.voteId"> -->
+                  <van-cell wx:for="{{item.choices}}" wx:key="id">
+                    <van-radio name="{{item.voteId}}">{{item.choice}}</van-radio>
+                  </van-cell>
+              </van-radio-group>
+              <view class="tag">
+              <van-tag type="primary" wx:for="{{voters}}" size="medium">选择{{item.voteContent}}:   {{item.votes}}人</van-tag>
+              </view>
+            <view class="btn">
+               <van-button wx:if="{{roomRole}}" size="small" color="red" plain calss="delete" bindtap="deletepoll" data-index='{{item.theme}}'>删除</van-button>
+                <van-button size="small" type="info" bindtap="pollChoice" data-index='{{item.theme}}' class="pollbtn">投票</van-button>
+            </view>
+       </van-collapse-item>
+      </van-collapse>
+   </view>
 </view>

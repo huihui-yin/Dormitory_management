@@ -20,6 +20,48 @@
         input-align="right"
         />
     </van-cell-group>
+    <!-- 有寝室 -->
+    <view wx:if="dorSta">
+      <van-cell-group>
+        <van-field
+          value="{{room.roomName}}"
+          label="所在寝室:"
+          readonly
+          border="{{ false }}"
+          input-align="right"
+          />
+      </van-cell-group>
+      <van-cell-group>
+        <van-field
+          value="{{room.id}}"
+          label="寝室id:"
+          readonly
+          border="{{ false }}"
+          input-align="right"
+          />
+      </van-cell-group>
+      <van-cell-group>
+        <van-field
+          value="{{isleader}}"
+          label="是否室长:"
+          readonly
+          border="{{ false }}"
+          input-align="right"
+          />
+      </van-cell-group>
+    </view>
+    <!-- 无寝室 -->
+    <view wx:else>
+     <van-cell-group>
+        <van-field
+          value="未加入任何寝室"
+          label="所在寝室:"
+          readonly
+          border="{{ false }}"
+          input-align="right"
+          />
+      </van-cell-group>
+    </view>
     <van-cell-group>
       <van-field
         value="{{tel}}"
@@ -38,15 +80,6 @@
         input-align="right"
         />
     </van-cell-group>
-     <!-- <van-cell-group>
-      <van-field
-        bindinput='briInput'
-        value="{{birthday}}"
-        label="生日:"
-        border="{{ false }}"
-        input-align="right"
-        />
-    </van-cell-group>  -->
   </view>
   <!-- 确认修改 -->
   <view class="Submit">
