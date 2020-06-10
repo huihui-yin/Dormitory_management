@@ -135,7 +135,8 @@ Page({
              this.setData({
                choice:""
              })
-            this.getAllPoll();
+            that.getoldPoll();
+            that.getAllPoll();
           }
           else{
             wx.showModal({
@@ -188,7 +189,7 @@ Page({
                     icon: 'success',
                     duration: 1000
                   })
-                  // 重新查询寝室刷新收支情况
+                  // 重新查询寝室刷新投票情况
                   that.getAllPoll();
                 }
                 else{

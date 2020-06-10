@@ -41,7 +41,7 @@
       <!--室长看到的收支信息-->
       <view  wx:if="{{roomRole}}">
           <van-collapse value="{{ activeNames }}" bind:change="onChange">
-            <van-collapse-item wx:for="{{allfinance}}" wx:key="id" wx:ket="{{item.id}}" title="{{item.classify}}" name="{{item.id}}" value="收支{{item.money}}">
+            <van-collapse-item wx:for="{{allfinance}}" wx:key="id" title="{{item.classify}}" name="{{item.id}}" value="收支{{item.money}}">
               <!--下滑的内容-->
               <van-cell-group>
                   <van-cell title="{{item.moneyReason}}" value="收支{{item.money}}" />
@@ -64,6 +64,7 @@
             </van-collapse-item>
           </van-collapse>
       </view>
+      <view style="height:50px"></view>
     </view>
     <view wx:else>
       <view class="noRes">
