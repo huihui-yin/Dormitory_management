@@ -88,150 +88,6 @@ function initChart(canvas,width,height){
     return chart
   }, 1000)
 };
-// 折线
-function initChart3(canvas,width,height){
-  console.log("initChart");
-  // 设置时间
-  // let dataNow = new Date();
-  // let month = dataNow.getMonth()+1;
-  // let nowTime = dataNow.getFullYear() + "/" + month + "/" + dataNow.getDate();
-  // let oldTime = dataNow.getFullYear() + "/" + dataNow.getMonth() + "/" + dataNow.getDate();
-  let dataList = [0, 0, 0, 0, 0]
-  // 查询最近半年
-  // console.log("一个月前:", oldTime);
-  // console.log("现在:", nowTime);
-  // wx.request({
-  //     url: getApp().globalData.api + '/finance/time',
-  //     header: {
-  //       'Authorization': getApp().globalData.tokenHead + ' '+getApp().globalData.token
-  //     },
-  //     method:'GET',
-  //     data: {
-  //       'pageNo': "1",
-  //       'pageSize': "100",
-  //       'from':oldTime,
-  //       'to':nowTime
-  //     },
-  //     success: (res) => {
-  //       let data = res.data;
-  //       if(data.code == '0000'){
-  //         console.log('最近一个月支出情况',data);
-  //         let length = data.data.records.length;
-  //         let records = data.data.records;
-  //         if(length!=0)
-  //         {
-  //           records.forEach((item, index) => {
-  //             if(item.money < 0){
-  //               if(item.classify == "寝室外出"){
-  //                 dataList[0] += -item.money;
-  //               }
-  //               else if(item.classify == "寝室杂物费"){
-  //                 dataList[1] += -item.money;
-  //               }
-  //               else if(item.classify == "寝室电费"){
-  //                 dataList[2] += -item.money;
-  //               }
-  //               else if(item.classify == "寝室网费"){
-  //                 dataList[3] += -item.money;
-  //               }
-  //               else if(item.classify == "寝室聚餐"){
-  //                 dataList[4] += -item.money;
-  //               }
-  //             }
-              
-  //           })
-  //         }
-  //         console.log(' dataList', dataList);
-  //       }
-  //     },
-  //     fail: function (err) {
-  //       console.log(err);
-  //     }
-  // })
-  // setTimeout(() => {
-    // 统计图
-    const chart = echarts.init(canvas, null, {
-      width:width,
-      height: height
-    });
-    canvas.setChart(chart);
-  
-    var option = {
-    //定义图标的标题和颜色
-      title: {
-        // text: '今日访问量',
-        // left: 'center'
-      },
-      color: ["#37A2DA"],
-      //定义你图标的线的类型种类
-      legend: {
-      data: ['money'],
-      top: 50,
-      left: 'center',
-      backgroundColor: '#37A2DA',
-      z: 100
-      },
-      grid: {
-      containLabel: true
-    },
-    //当你选中数据时的提示框
-      tooltip: {
-        show: true,
-        trigger: 'axis'
-      },
-      //	x轴
-      xAxis: {
-        type: 'category',
-        boundaryGap: false,
-        data: ['1', '2', '3', '4', '5', '6', '7'],//x轴数据
-        // x轴的字体样式
-        axisLabel: {
-          show: true,
-          textStyle: {
-            color: '#000',
-            fontSize: '14',
-          }
-        },
-        // 控制网格线是否显示
-        splitLine: {
-          show: true,
-          //  改变轴线颜色
-          lineStyle: {
-            // 使用深浅的间隔色
-            color: ['#aaaaaa']
-          }
-        },
-        // x轴的颜色和宽度
-        axisLine: {
-          lineStyle: {
-            color: '#000',
-            width: 1,   //这里是坐标轴的宽度,可以去掉
-          }
-        }
-        // show: false //是否显示坐标
-      },
-      yAxis: {
-        x: 'center',
-        type: 'value',
-        //网格线
-        splitLine: {
-          lineStyle: {
-            type: 'dashed'
-          }
-        },
-        // show: false
-      },
-      series: [{
-        name: 'A',
-        type: 'line',
-        smooth: true,
-        data: [15, 2, 30, 16, 10, 17, 15]
-      }]
-    };
-    chart.setOption(option);
-    return chart;
-  // }, 1000)
-}
 // 柱形
 function initChart2(canvas,width,height){
   console.log("initChart");
@@ -528,13 +384,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // 判断用户是不是室长
-    if(getApp().globalData.roomRole == 'leader'){
-      this.setData({
-        roomRole: true
-      })
-    }
-    this.getallfinance();
   },
 
   /**
@@ -548,6 +397,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    // 判断用户是不是室长
+    if(getApp().globalData.roomRole == 'leader'){
+      this.setData({
+        roomRole: true
+      })
+    }
+    this.getallfinance();
 
   },
 

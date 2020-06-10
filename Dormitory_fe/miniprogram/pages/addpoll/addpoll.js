@@ -83,8 +83,8 @@ Page({
           let data = res.data;
           console.log('res.data', data);
           if(data.code == '0000'){
-            wx.redirectTo({
-              url: '/pages/poll/poll'
+            wx.navigateBack({
+              delta: 1
             })
           }
           else{
