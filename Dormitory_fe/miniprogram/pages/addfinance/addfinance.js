@@ -152,8 +152,8 @@ Page({
             //   showCancel: false,
             //   success: function (res) { }
             // })
-            wx.redirectTo({
-              url: '/pages/finance/finance'
+            wx.navigateBack({
+              delta: 1
             })
           }
           else{

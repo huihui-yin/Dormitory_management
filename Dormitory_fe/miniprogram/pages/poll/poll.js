@@ -213,12 +213,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if(getApp().globalData.roomRole == 'leader'){
-      this.setData({
-        roomRole: true
-      })
-    }
-    this.getAllPoll();
   },
 
   /**
@@ -232,7 +226,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if(getApp().globalData.roomRole == 'leader'){
+      this.setData({
+        roomRole: true
+      })
+    }
+    this.getAllPoll();
   },
 
   /**
