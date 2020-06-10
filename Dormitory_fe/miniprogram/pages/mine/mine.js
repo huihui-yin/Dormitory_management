@@ -138,6 +138,8 @@ Page({
                   that.setData({
                     username: that.data.usernew
                   })
+                  // 更新token
+                  getApp().globalData.token = data.data.token
                 }
                 else{
                   wx.showModal({

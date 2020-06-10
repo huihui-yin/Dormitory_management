@@ -231,6 +231,7 @@ Page({
                     that.setData({
                       roomLeader:false
                     })
+                    that.DorInfo();
                     getApp().globalData.roomRole = 'member';
                     that.handleCancel1();
                   }

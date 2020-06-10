@@ -37,6 +37,7 @@
    </view>
    <!--搜索寝室  -->
    <view class="searchId">
+   <view  class="findId colortext2"><text>按寝室ID查找寝室</text></view>
     <van-search 
       value="{{ dorIdSearch }}" 
       placeholder="请输入寝室id号"
