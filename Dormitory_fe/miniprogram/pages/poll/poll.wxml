@@ -5,7 +5,7 @@
 <view class="pollCenter">
    <!--看到的未投票投票界面-->
    <view class="leaderPoll">
-     <van-collapse value="{{ activeNames }}" bind:change="onChange">
+     <van-collapse accordion  value="{{ activeNames }}" bind:change="onChange">
        <van-collapse-item title="{{item.theme}}" name="{{item.theme}}" wx:for="{{allnewpoll}}" wx:key="theme" value="{{ispoll}}">
               <van-radio-group value="{{choice }}" bind:change="radioChange" class="radioGroup">
                  <!-- <van-cell wx:for="{{item.choices}}" wx:key="key" wx:ket="item.voteId"> -->
