@@ -1,19 +1,26 @@
 <!--用户授权页面-->
 <view class="sqall" wx:if="{{isHide}}">
   <view wx:if="{{canIUse}}">
-   <view class='header'>
-    <view class="userinfo-avatar">
-      <open-data class="img" type="userAvatarUrl"></open-data>
+    <!-- 需要使用 button 来授权登录 -->
+    <view class="Img">
+      <image class="appImg" src="../../images/dor.png" alt="" ></image>
+      <view class="noword">西西寝室</view>
     </view>
-   </view>
-   <view class='content'>
+    <view class="gongneng">
+      <text>寝室报修</text><text>寝室资金</text>
+      <text>寝室活动</text><text>寝室管理</text>
+    </view>
+    <button class='btn' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
+            登录/注册
+    </button>
+    <!--<view class='content'>
      <view>申请获取以下权限</view>
      <text>获得你的公开信息(昵称，头像等)</text>
+   </view>-->
+   <view class="loginreason">
+     <text>注:仅限于西华大学在校学生使用</text>
+     <text>使用西西寝室,需要用户授权登录,获取用户基本信息,首次使用,西西寝室将自动注册</text>
    </view>
-    <!-- 需要使用 button 来授权登录 -->
-    <button class='btn' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
-            授权登录
-    </button>
   </view>
   <view wx:else>请升级微信版本</view>
 </view>
