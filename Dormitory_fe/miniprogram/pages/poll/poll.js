@@ -20,6 +20,7 @@ Page({
     })
   },
   onChange(e){
+    //console.log('切换手风琴：', e.detail)
     this.setData({
       activeNames:e.detail
     })
@@ -33,6 +34,7 @@ Page({
   //获取某个已经投票主题的数据:
   getoldPoll(){
     var that=this;
+    //console.log("投票名字：",that.data.activeNames)
     wx.request({
       url: getApp().globalData.api + '/poll/getThemePoll',
       header: {
@@ -40,7 +42,7 @@ Page({
       },
       method:'GET',
       data: {
-        theme: that.data.activeNames[0]
+        theme: that.data.activeNames
       },
       success: (res) => {
         let data = res.data;
@@ -68,7 +70,7 @@ Page({
       success: (res) => {
         let data = res.data;
         if(data.code == '0000'){
-            console.log(data.data);
+            //console.log(data.data);
             this.setData({
               allnewpoll:data.data,
             })
@@ -82,9 +84,9 @@ Page({
     this.setData({
       theme:e.currentTarget.dataset['index']
     });
-    console.log(this.data.theme);
-    console.log(this.data.choice);
-    console.log(getApp().globalData.username);
+    //console.log(this.data.theme);
+    //console.log(this.data.choice);
+    //console.log(getApp().globalData.username);
     if(that.data.choice==""){
       wx.showModal({
         title: '提示！',
@@ -124,7 +126,7 @@ Page({
         '\r\n--XXX' ,
         success: (res) => {
           let data = res.data;
-          console.log('res.data', data);
+          //console.log('res.data', data);
           if(data.code == '0000'){
               wx.showModal({
                showCancel: false,
@@ -141,7 +143,7 @@ Page({
           else{
             wx.showModal({
               showCancel: false,
-               content: '已经投票',
+               content: '已经投过票，不可重复投票',
               success: function (res) {
               }
             })
@@ -162,7 +164,7 @@ Page({
     this.setData({
       theme:e.currentTarget.dataset['index']
     });
-    console.log(this.data.theme);
+    //console.log(this.data.theme);
     wx.showModal({
       title: '提示',
       content: '确认删除投票信息？',
