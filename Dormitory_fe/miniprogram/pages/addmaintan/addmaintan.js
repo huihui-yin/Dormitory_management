@@ -95,14 +95,8 @@ Page({
             console.log('res.data', data);
             // 登录成功
             if(data.code == '0000'){
-              //  wx.showModal({
-              //   showCancel: false,
-              //   content: '提交成功',
-              //   showCancel: false,
-              //   success: function (res) { }
-              // })
-              wx.redirectTo({
-                url: '/pages/maintan/maintan'
+              wx.navigateBack({
+                delta: 1
               })
             }
             else{
