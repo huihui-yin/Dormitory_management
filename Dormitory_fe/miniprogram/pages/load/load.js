@@ -123,20 +123,6 @@ Page({
             that.wxlogin();
         }
       });
-    } else {
-      //用户点了拒绝授权
-      wx.showModal({
-          title: '警告',
-          content: '必须授权才能进入小程序',
-          showCancel: false,
-          confirmText: '返回授权',
-          success: function(res) {
-              // 用户没有授权成功，不需要改变 isHide 的值
-              if (res.confirm) {
-                  console.log('用户点击了“返回授权”');
-              }
-          }
-      });
     }
   },
   /**
